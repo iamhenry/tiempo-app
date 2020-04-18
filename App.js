@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Quote from "./components/quote/quote";
+import Quote from "./components/Quote/Quote";
 
 export default function App() {
   return (
