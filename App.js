@@ -1,10 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import Quote from "./components/quote/quote";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!!</Text>
+      <Quote style={styles.quote} />
     </View>
   );
 }
@@ -12,8 +13,13 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#F7D794",
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 64,
+  },
+  quote: {
+    marginTop: 40,
+    backgroundColor: "white",
   },
 });
