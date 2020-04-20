@@ -2,12 +2,12 @@
 // https://www.youtube.com/watch?v=3SpAg5tr7Ws
 const Tokens = {
     color: {
-        blueMoon100: "#303952",
+        blueMoon100: "#475473",
         blueMoon200: "#303952",
-        blueMoon300: "#303952",
-        summerTime100: "#F7D794",
+        blueMoon300: "#0A132C",
+        summerTime100: "#FCEBB9",
         summerTime200: "#F7D794",
-        summerTime300: "#F7D794",
+        summerTime300: "#F5CC78",
         snowWhite100: "#FDFFFC"
     },
     spacing: {
