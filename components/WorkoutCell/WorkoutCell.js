@@ -1,27 +1,41 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { H5, H6 } from "../Global/Primitives";
+import { H4, H5, H6 } from "../Global/Primitives";
 import styled from "styled-components/native";
+import Tokens from "../Global/Tokens";
 
 // TODO:
 // 1. Style this component with tokens
-// 2. Make this component flexible with css (nice to have)
+// 2. Make this component flexible with css by reusing tokens(nice to have)
 // 3. text primitives need to have props/modifiers for color and weight
-
+// 4. add milestones to Github for v1 release
 
 export const StyledWorkoutCell = styled.View`
   background-color: #1c1c1c;
   background-color: #475473;
-  border-radius: 16px;
+  border-radius: ${Tokens.spacing.small};
   padding: 20px;
 `;
 
 export const WorkoutCell = () => {
   return (
     <StyledWorkoutCell>
-      <H5>Favorite HIIT Workout</H5>
-      <H6>Length 3:25, Streak 15</H6>
-      <H5>3:45</H5>
+      {/* 
+        ideal solution for customizable styled components 
+        <H5 blue bold></H5>
+        blue = font color
+        bold = font weight
+    */}
+      <H5
+        fontWeight={Tokens.fontWeight.bold}
+        color={Tokens.color.summerTime200}
+      >
+        Favorite HIIT Workout
+      </H5>
+      <H6 color={Tokens.color.snowWhite100}>Length 3:25, Streak 15</H6>
+      <H5 fontWeight={Tokens.fontWeight.bold} color={Tokens.color.snowWhite100}>
+        3:45
+      </H5>
     </StyledWorkoutCell>
   );
 };
