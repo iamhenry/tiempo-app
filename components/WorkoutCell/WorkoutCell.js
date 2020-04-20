@@ -32,7 +32,7 @@ export const WorkoutCell = () => {
       >
         Favorite HIIT Workout
       </H5>
-      <H6 color={Tokens.color.snowWhite100}>Length 3:25, Streak 15</H6>
+      <H6>Length 3:25, Streak 15</H6>
       <H5 fontWeight={Tokens.fontWeight.bold} color={Tokens.color.snowWhite100}>
         3:45
       </H5>

@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import Tokens from "./Tokens";
 
+// TYPOGRAPHY
 export const H1 = styled.Text((props) => ({
   color: props.color,
   fontSize: `${Tokens.fontSize.h1}`,
@@ -32,33 +33,9 @@ export const H5 = styled.Text((props) => ({
   fontWeight: props.fontWeight,
 }));
 
-export const H6 = styled.Text((props) => ({
-  color: props.color,
-  fontSize: `${Tokens.fontSize.h6}`,
-  fontWeight: props.fontWeight,
-}));
-
-// export const H6 = styled.Text`
-//   color: ${(props) =>
-//     props.dark
-//       ? `${Tokens.color.blueMoon200}`
-//       : `${Tokens.color.summerTime200}`};
-//   font-size: ${Tokens.fontSize.h6};
-//   font-weight: 300;
-// `;
-
-// ${(props) => {
-//     switch (props.fontWeight) {
-//       case "regular":
-//         return `font-weight: ${Tokens.fontWeight.regular}`;
-//       case "semiBold":
-//         return `font-weight: ${Tokens.fontWeight.semiBold}`;
-//     }
-//     return `font-weight: ${Tokens.fontWeight.bold}`;
-//   }}
-
-// export const H5 = styled.Text`
-//   color: ${props => props.dark ? `${Tokens.color.blueMoon200}` : `${Tokens.color.summerTime200}`};
-//   font-size: ${Tokens.fontSize.h5};
-//   font-weight: ${Tokens.fontWeight.bold};
-// `;
+export const H6 = styled.Text`
+  /* REWRITE THE ABOVE STYLED COMPONENTS WITH THIS SYNTAX BELOW */
+  color: ${(props) => props.color || `${Tokens.color.snowWhite100}`};
+  font-weight: ${(props) => props.fontWeight || `${Tokens.fontWeight.regular}`};
+  font-size: ${(props) => props.fontSize || `${Tokens.fontSize.h6}`};
+`;
