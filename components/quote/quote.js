@@ -15,7 +15,11 @@ export default function Quote() {
         I hate every minute of training. But I said, don’t quit. Suffer now and
         live the rest of your life a champion.
       </H4>
-      <H5 color={Tokens.color.blueMoon200} fontWeight={Tokens.fontWeight.bold}>
+      <H5
+        style={styles.quotePerson}
+        color={Tokens.color.blueMoon200}
+        fontWeight={Tokens.fontWeight.bold}
+      >
         – Muhammad Ali
       </H5>
     </View>
@@ -25,5 +29,8 @@ export default function Quote() {
 const styles = StyleSheet.create({
   quote: {
     paddingBottom: 24,
+  },
+  quotePerson: {
+    marginBottom: 32,
   },
 });

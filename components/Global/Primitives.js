@@ -37,5 +37,5 @@ export const H6 = styled.Text`
   /* REWRITE THE ABOVE STYLED COMPONENTS WITH THIS SYNTAX BELOW */
   color: ${(props) => props.color || `${Tokens.color.snowWhite100}`};
   font-weight: ${(props) => props.fontWeight || `${Tokens.fontWeight.regular}`};
-  font-size: ${(props) => props.fontSize || `${Tokens.fontSize.h6}`};
+  font-size: ${Tokens.fontSize.h6};
 `;

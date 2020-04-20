@@ -13,19 +13,14 @@ import Tokens from "../Global/Tokens";
 export const StyledWorkoutCell = styled.View`
   background-color: #1c1c1c;
   background-color: #475473;
-  border-radius: ${Tokens.spacing.small};
+  border-radius: ${Tokens.spacing.small}px;
   padding: 20px;
+  margin-bottom: ${Tokens.spacing.small}px;
 `;
 
 export const WorkoutCell = () => {
   return (
     <StyledWorkoutCell>
-      {/* 
-        ideal solution for customizable styled components 
-        <H5 blue bold></H5>
-        blue = font color
-        bold = font weight
-    */}
       <H5
         fontWeight={Tokens.fontWeight.bold}
         color={Tokens.color.summerTime200}
