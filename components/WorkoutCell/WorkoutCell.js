@@ -15,34 +15,29 @@ export const StyledWorkoutCell = styled.View`
   border-radius: ${Tokens.spacing.small}px;
   padding: 20px;
   margin-bottom: ${Tokens.spacing.small}px;
-  flex: 1;
+  height: 80px;
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
 `;
 
 const WorkoutTitle = styled(H5)`
-  /* flex-direction: column; */
-  /* flex: 1; */
-  /* justify-content: flex-start; */
-  background-color: red;
-  width: 90%;
+  /* background-color: black; */
+  width: 80%;
+  height: 60%;
 `;
 
 const WorkoutMetadata = styled(H6)`
-  flex: 1;
-  background-color: gold;
-  width: 90%;
+  /* background-color: navy; */
+  width: 80%;
+  max-height: 50%;
 `;
 
 const WorkoutDuration = styled(H5)`
-  /* flex: 1; */
-  /* flex-wrap: wrap; */
-  /* justify-content: flex-end; */
-  align-self: flex-end;
-  background-color: silver;
   text-align: right;
+  /* background-color: green; */
+  width: 20%;
 `;
 
 export const WorkoutCell = () => {
@@ -51,13 +46,17 @@ export const WorkoutCell = () => {
       <WorkoutTitle
         fontWeight={Tokens.fontWeight.bold}
         color={Tokens.color.summerTime200}
+        numberOfLines={1}
       >
         Favorite HIIT Workout
       </WorkoutTitle>
-      <WorkoutMetadata>Length 3:25, Streak 15</WorkoutMetadata>
+      <WorkoutMetadata numberOfLines={1}>
+        Length 3:25, Streak 15
+      </WorkoutMetadata>
       <WorkoutDuration
         fontWeight={Tokens.fontWeight.bold}
         color={Tokens.color.snowWhite100}
+        numberOfLines={1}
       >
         58:45
       </WorkoutDuration>
