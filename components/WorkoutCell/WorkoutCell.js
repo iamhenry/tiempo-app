@@ -11,26 +11,56 @@ import Tokens from "../Global/Tokens";
 // 4. add milestones to Github for v1 release
 
 export const StyledWorkoutCell = styled.View`
-  background-color: #1c1c1c;
-  background-color: #475473;
+  background-color: ${Tokens.color.blueMoon100};
   border-radius: ${Tokens.spacing.small}px;
   padding: 20px;
   margin-bottom: ${Tokens.spacing.small}px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const WorkoutTitle = styled(H5)`
+  /* flex-direction: column; */
+  /* flex: 1; */
+  /* justify-content: flex-start; */
+  background-color: red;
+  width: 90%;
+`;
+
+const WorkoutMetadata = styled(H6)`
+  flex: 1;
+  background-color: gold;
+  width: 90%;
+`;
+
+const WorkoutDuration = styled(H5)`
+  /* flex: 1; */
+  /* flex-wrap: wrap; */
+  /* justify-content: flex-end; */
+  align-self: flex-end;
+  background-color: silver;
+  text-align: right;
 `;
 
 export const WorkoutCell = () => {
   return (
     <StyledWorkoutCell>
-      <H5
+      <WorkoutTitle
         fontWeight={Tokens.fontWeight.bold}
         color={Tokens.color.summerTime200}
       >
         Favorite HIIT Workout
-      </H5>
-      <H6>Length 3:25, Streak 15</H6>
-      <H5 fontWeight={Tokens.fontWeight.bold} color={Tokens.color.snowWhite100}>
-        3:45
-      </H5>
+      </WorkoutTitle>
+      <WorkoutMetadata>Length 3:25, Streak 15</WorkoutMetadata>
+      <WorkoutDuration
+        fontWeight={Tokens.fontWeight.bold}
+        color={Tokens.color.snowWhite100}
+      >
+        58:45
+      </WorkoutDuration>
     </StyledWorkoutCell>
   );
 };
