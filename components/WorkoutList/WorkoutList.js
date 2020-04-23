@@ -31,7 +31,7 @@ export function WorkoutList() {
       >
         Workouts
       </SectionTitle>
-      <StyledButton text="Works!!!" />
+      <StyledButton text="Needs Work!!!" size="large" />
       <WorkoutCell />
       <WorkoutCell />
       <WorkoutCell />

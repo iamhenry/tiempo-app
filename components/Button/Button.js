@@ -6,8 +6,17 @@ import Tokens from "../Global/Tokens";
 // https://medium.com/plark/react-native-how-to-make-custom-button-30b34b020def
 
 const BaseButton = styled.TouchableOpacity`
-  background-color: ${Tokens.color.blueMoon100};
-  height: 36px;
+  height: ${(props) => {
+    switch (props.size) {
+      case "small":
+        return "36px";
+      case "large":
+        return "52px";
+      default:
+        return "36px";
+    }
+  }};
+  background-color: ${(props) => (props.primary ? "red" : "black")};
   border-radius: 100px;
   color: ${Tokens.color.snowWhite100};
   padding: 8px;
@@ -25,9 +34,9 @@ const ButtonLabel = styled.Text`
 // state(ie: default or disabled), size (ie small)
 // <StyledButton primary small text=""/>
 
-export const StyledButton = ({ text, onPress }) => {
+export const StyledButton = ({ text, ...rest }) => {
   return (
-    <BaseButton onPress={onPress}>
+    <BaseButton {...rest}>
       <ButtonLabel>{text}</ButtonLabel>
     </BaseButton>
   );
