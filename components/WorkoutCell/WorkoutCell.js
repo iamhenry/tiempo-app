@@ -15,44 +15,35 @@ export const StyledWorkoutCell = styled.View`
   border-radius: ${Tokens.spacing.small}px;
   padding: 20px;
   margin-bottom: ${Tokens.spacing.small}px;
-  height: 80px;
   display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
 `;
 
-const WorkoutTitle = styled(H5)`
-  /* background-color: black; */
-  width: 80%;
-  height: 60%;
-`;
-
-const WorkoutMetadata = styled(H6)`
-  /* background-color: navy; */
-  width: 80%;
-  max-height: 50%;
+const WorkoutInfo = styled.View`
+  /* background-color: purple; */
+  flex-basis: 80%;
 `;
 
 const WorkoutDuration = styled(H5)`
   text-align: right;
   /* background-color: green; */
-  width: 20%;
+  align-self: center;
+  flex-basis: 20%;
 `;
 
 export const WorkoutCell = () => {
   return (
     <StyledWorkoutCell>
-      <WorkoutTitle
-        fontWeight={Tokens.fontWeight.bold}
-        color={Tokens.color.summerTime200}
-        numberOfLines={1}
-      >
-        Favorite HIIT Workout
-      </WorkoutTitle>
-      <WorkoutMetadata numberOfLines={1}>
-        Length 3:25, Streak 15
-      </WorkoutMetadata>
+      <WorkoutInfo>
+        <H5
+          fontWeight={Tokens.fontWeight.bold}
+          color={Tokens.color.summerTime200}
+          numberOfLines={1}
+        >
+          Favorite HIIT Workout Workout Workout
+        </H5>
+        <H6 numberOfLines={1}>Length 3:25, Streak 15</H6>
+      </WorkoutInfo>
       <WorkoutDuration
         fontWeight={Tokens.fontWeight.bold}
         color={Tokens.color.snowWhite100}
