@@ -16,15 +16,23 @@ const BaseButton = styled.TouchableOpacity`
         return "36px";
     }
   }};
-  background-color: ${(props) => (props.primary ? "red" : "black")};
+  background-color: ${(props) =>
+    props.primary
+      ? `${Tokens.color.summerTime200}`
+      : `${Tokens.color.blueMoon100}`};
   border-radius: 100px;
-  color: ${Tokens.color.snowWhite100};
-  padding: 8px;
-  margin-bottom: 10px;
+  padding: 8px 16px;
+  display: flex;
+  justify-content: center;
 `;
 
+// HOW CAN I TARGET THIS CHILD COMPONENT WITH CSS?
 const ButtonLabel = styled.Text`
-  color: ${Tokens.color.summerTime200};
+  /* color: ${Tokens.color.summerTime200}; */
+  color: ${(props) =>
+    props.primaryTextColor
+      ? `${Tokens.color.summerTime200}`
+      : `${Tokens.color.snowWhite100}`};
   font-size: ${Tokens.fontSize.h5};
   font-weight: ${Tokens.fontWeight.bold};
   text-align: center;

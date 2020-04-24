@@ -22,16 +22,25 @@ const SectionTitle = styled(H2)`
   margin-bottom: ${Tokens.spacing.medium}px;
 `;
 
+const SectionHeader = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export function WorkoutList() {
   return (
     <StyledWorkoutList>
-      <SectionTitle
-        color={Tokens.color.summerTime200}
-        fontWeight={Tokens.fontWeight.bold}
-      >
-        Workouts
-      </SectionTitle>
-      <StyledButton text="Needs Work!!!" size="large" />
+      <SectionHeader>
+        <SectionTitle
+          color={Tokens.color.summerTime200}
+          fontWeight={Tokens.fontWeight.bold}
+        >
+          Workouts
+        </SectionTitle>
+        {/* Need to make  */}
+        <StyledButton text="Needs Work !!!" size="small" />
+      </SectionHeader>
       <WorkoutCell />
       <WorkoutCell />
       <WorkoutCell />
