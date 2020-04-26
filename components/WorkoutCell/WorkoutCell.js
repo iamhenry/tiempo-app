@@ -25,6 +25,7 @@ const WorkoutInfo = styled.View`
 const WorkoutTitle = styled(H5)`
   font-weight: ${Tokens.fontWeight.bold};
   color: ${Tokens.color.summerTime200};
+  margin-bottom: ${Tokens.spacing.xSmall};
 `;
 
 const WorkoutMetadata = styled(H6)``;
