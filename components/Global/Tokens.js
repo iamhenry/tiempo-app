@@ -11,13 +11,13 @@ const Tokens = {
     snowWhite100: "#FDFFFC",
   },
   spacing: {
-    xxSmall: 4,
-    xSmall: 8,
-    small: 16,
-    medium: 24,
-    large: 32,
-    xLarge: 48,
-    xxLarge: 64,
+    xxSmall: "4px",
+    xSmall: "8px",
+    small: "16px",
+    medium: "24px",
+    large: "32px",
+    xLarge: "48px",
+    xxLarge: "64px",
   },
   fontFamily: {
     serif: "Playfair Display",
@@ -36,6 +36,6 @@ const Tokens = {
     semiBold: "600",
     bold: "800",
   },
-  borderRadius: [16],
+  borderRadius: { default: "16px" },
 };
 export default Tokens;
