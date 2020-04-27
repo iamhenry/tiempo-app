@@ -34,8 +34,7 @@ export function WorkoutList() {
     <StyledWorkoutList>
       <SectionHeader>
         <SectionTitle>Workouts</SectionTitle>
-        {/* Need to make color prop for button*/}
-        <StyledButton text="Needs Work !!!" size="small" />
+        <StyledButton primaryTextColor text="Edit" size="small" />
       </SectionHeader>
       <WorkoutCell />
       <WorkoutCell />

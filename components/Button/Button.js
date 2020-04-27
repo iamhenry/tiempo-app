@@ -21,14 +21,13 @@ const BaseButton = styled.TouchableOpacity`
       ? `${Tokens.color.summerTime200}`
       : `${Tokens.color.blueMoon100}`};
   border-radius: 100px;
-  padding: 8px 16px;
+  padding: ${Tokens.spacing.xSmall} ${Tokens.spacing.medium};
   display: flex;
   justify-content: center;
 `;
 
 // HOW CAN I TARGET THIS CHILD COMPONENT WITH CSS?
 const ButtonLabel = styled.Text`
-  /* color: ${Tokens.color.summerTime200}; */
   color: ${(props) =>
     props.primaryTextColor
       ? `${Tokens.color.summerTime200}`
@@ -45,7 +44,7 @@ const ButtonLabel = styled.Text`
 export const StyledButton = ({ text, ...rest }) => {
   return (
     <BaseButton {...rest}>
-      <ButtonLabel>{text}</ButtonLabel>
+      <ButtonLabel {...rest}>{text}</ButtonLabel>
     </BaseButton>
   );
 };
