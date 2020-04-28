@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+
 import { H1 } from "../../components/Global/Primitives";
 import { StyledInput } from "../../components/Input/Input";
 import { StyledRoundButton } from "../../components/RoundButton/RoundButton";

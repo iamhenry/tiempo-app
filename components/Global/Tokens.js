@@ -20,8 +20,12 @@ const Tokens = {
     xxLarge: "64px",
   },
   fontFamily: {
-    serif: "Playfair Display",
-    sansSerif: "Nunito Sans",
+    nunitoBlack: "nunito-black",
+    nunitoSemi: "nunito-semibold",
+    nunitoRegular: "nunito-regular",
+    playfairBlack: "playfair-black",
+    playfairSemi: "playfair-semibold",
+    playfairRegular: "playfair-regular",
   },
   fontSize: {
     h1: "100px",

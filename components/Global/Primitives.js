@@ -32,10 +32,14 @@ export const H5 = styled.Text`
   color: ${(props) => props.color || `${Tokens.color.blueMoon200}`};
   font-size: ${Tokens.fontSize.h5};
   font-weight: ${(props) => props.fontWeight || `${Tokens.fontWeight.regular}`};
+  font-family: ${(props) =>
+    props.fontFamily || `${Tokens.fontFamily.playfairRegular}`};
 `;
 
 export const H6 = styled.Text`
   color: ${(props) => props.color || `${Tokens.color.snowWhite100}`};
   font-weight: ${(props) => props.fontWeight || `${Tokens.fontWeight.regular}`};
   font-size: ${Tokens.fontSize.h6};
+  font-family: ${(props) =>
+    props.fontFamily || `${Tokens.fontFamily.playfairRegular}`};
 `;
