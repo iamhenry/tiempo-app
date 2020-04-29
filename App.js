@@ -1,4 +1,5 @@
-import React, { useState, StyleSheet, Text } from "react";
+import React, { useState } from "react";
+
 import Home from "./screens/Home/Home";
 import { TimerSettings } from "./screens/TimerSettings/TimerSettings";
 import * as Font from "expo-font";

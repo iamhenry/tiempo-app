@@ -1,4 +1,5 @@
 import React from "react";
+
 import Quote from "../../components/Quote/Quote";
 import Tokens from "../../components/Global/Tokens";
 import { WorkoutList } from "../../components/WorkoutList/WorkoutList";

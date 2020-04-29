@@ -13,15 +13,11 @@ const RoundButton = styled.TouchableOpacity`
   width: ${(props) => (props.wide ? "88px" : "40px")};
   border-radius: 100px;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-self: center;
-  /* flex-direction: row; */
+  align-items: center;
 `;
 
 export const StyledRoundButton = ({ ...rest }) => {
-  return (
-    <RoundButton {...rest}>
-      <Text>Play</Text>
-    </RoundButton>
-  );
+  return <RoundButton {...rest} />;
 };
