@@ -16,6 +16,7 @@ const BaseButton = styled.TouchableOpacity`
         return "36px";
     }
   }};
+
   background-color: ${(props) =>
     props.primary
       ? `${Tokens.color.summerTime200}`

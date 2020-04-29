@@ -1,6 +1,6 @@
 import React, { useState, StyleSheet, Text } from "react";
 import Home from "./screens/Home/Home";
-import { Timer } from "./screens/Timer/Timer";
+import { TimerSettings } from "./screens/TimerSettings/TimerSettings";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 
@@ -20,7 +20,7 @@ export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
 
   if (fontsLoaded) {
-    return <Home />;
+    return <TimerSettings />;
   } else {
     return (
       <AppLoading startAsync={getFonts} onFinish={() => setFontsLoaded(true)} />
