@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+
 import { H5, H6 } from "../Global/Primitives";
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
-
-// TODO:
-// 1. Style this component with tokens
-// 2. Make this component flexible with css by reusing tokens(nice to have)
-// 3. text primitives need to have props/modifiers for color and weight
-// 4. add milestones to Github for v1 release
+import { FlatList } from "react-native";
 
 export const StyledWorkoutCell = styled.View`
   background-color: ${Tokens.color.blueMoon100};
@@ -23,33 +19,49 @@ const WorkoutInfo = styled.View`
 `;
 
 const WorkoutTitle = styled(H5)`
-  font-weight: ${Tokens.fontWeight.bold};
   color: ${Tokens.color.summerTime200};
   margin-bottom: ${Tokens.spacing.xSmall};
+  font-family: ${Tokens.fontFamily.nunitoBlack};
 `;
 
-const WorkoutMetadata = styled(H6)``;
+const WorkoutMetadata = styled(H6)`
+  font-family: ${Tokens.fontFamily.nunitoRegular};
+`;
 
 const WorkoutDuration = styled(H5)`
   text-align: right;
   align-self: center;
   flex-basis: 20%;
-  font-weight: ${Tokens.fontWeight.bold};
+  font-family: ${Tokens.fontFamily.nunitoBlack};
   color: ${Tokens.color.snowWhite100};
 `;
 
 export const WorkoutCell = () => {
+  const [workout, setWorkout] = useState([
+    {
+      name: "Yoga Stretch",
+      metadata: "Length 3:25, Streak 15",
+      duration: "3:25",
+    },
+    {
+      name: "HIIT Workout",
+      metadata: "Length 3:25, Streak 15",
+      duration: "7:00",
+    },
+  ]);
+
   return (
-    <StyledWorkoutCell>
-      <WorkoutInfo>
-        <WorkoutTitle numberOfLines={1}>
-          Favorite HIIT Workout Workout Workout
-        </WorkoutTitle>
-        <WorkoutMetadata numberOfLines={1}>
-          Length 3:25, Streak 15
-        </WorkoutMetadata>
-      </WorkoutInfo>
-      <WorkoutDuration numberOfLines={1}>58:45</WorkoutDuration>
-    </StyledWorkoutCell>
+    <FlatList
+      data={workout}
+      renderItem={({ item }) => (
+        <StyledWorkoutCell>
+          <WorkoutInfo>
+            <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
+            <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>
+          </WorkoutInfo>
+          <WorkoutDuration numberOfLines={1}>{item.duration}</WorkoutDuration>
+        </StyledWorkoutCell>
+      )}
+    />
   );
 };

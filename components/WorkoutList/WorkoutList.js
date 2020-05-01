@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
 import { H2 } from "../Global/Primitives";
 import { WorkoutCell } from "../WorkoutCell/WorkoutCell";
 import { StyledButton } from "../Button/Button";
+
+// TODO
+// 1. UPDATE WORKOUT NAME FROM TIMER SCREEN
 
 const StyledWorkoutList = styled.View`
   flex: 1;
@@ -37,16 +40,6 @@ export function WorkoutList() {
         <SectionTitle>Workouts</SectionTitle>
         <StyledButton primaryTextColor text="Edit" size="small" />
       </SectionHeader>
-      <WorkoutCell />
-      <WorkoutCell />
-      <WorkoutCell />
-      <WorkoutCell />
-      <WorkoutCell />
-      <WorkoutCell />
-      <WorkoutCell />
-      <WorkoutCell />
-      <WorkoutCell />
-      <WorkoutCell />
       <WorkoutCell />
     </StyledWorkoutList>
   );
