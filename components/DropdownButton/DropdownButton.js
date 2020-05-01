@@ -3,24 +3,44 @@ import React from "react";
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
 import { Feather } from "@expo/vector-icons";
+import { H5 } from "../Global/Primitives";
 
-const DropdownButton = styled.TouchableOpacity``;
+const DropdownButton = styled.TouchableOpacity`
+  background-color: ${Tokens.color.blueMoon100};
+  padding: ${Tokens.spacing.medium} 20px;
+  border-radius: ${Tokens.borderRadius.default};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
-const DropdownLabel = styled.Text``;
+const TimeContainer = styled.View`
+  flex-direction: row;
+`;
 
-const DropdownTimeLabel = styled.Text``;
+const DropdownLabel = styled(H5)``;
 
-const TimeContainer = styled.View``;
+const DropdownTimeLabel = styled(H5)``;
 
 export const StyledDropdownButton = () => {
   return (
     <DropdownButton>
-      <DropdownLabel></DropdownLabel>
+      <DropdownLabel
+        color={`${Tokens.color.summerTime200}`}
+        fontFamily={`${Tokens.fontFamily.nunitoBlack}`}
+      >
+        Exercise
+      </DropdownLabel>
       <TimeContainer>
-        <TimeContainer>Exercise</TimeContainer>
+        <DropdownTimeLabel
+          color={`${Tokens.color.snowWhite100}`}
+          fontFamily={`${Tokens.fontFamily.nunitoBlack}`}
+        >
+          0:15
+        </DropdownTimeLabel>
         <Feather
           name="chevron-down"
-          size={8}
+          size={24}
           color={`${Tokens.color.snowWhite100}`}
         />
       </TimeContainer>

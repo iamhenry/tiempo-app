@@ -6,7 +6,8 @@ import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
 import { Feather, Entypo } from "@expo/vector-icons";
 import Tokens from "../../components/Global/Tokens";
 import styled from "styled-components/native";
-import CustomPicker from "../../components/Picker/Picker";
+import TimePicker from "../../components/TimePicker/TimePicker";
+import { StyledDropdownButton } from "../../components/DropdownButton/DropdownButton";
 
 const TimerSettingsContainer = styled.View`
   display: flex;
@@ -39,7 +40,8 @@ export const TimerSettings = () => {
           borderRadius={5}
         />
       </StyledRoundButton>
-      <CustomPicker />
+      <TimePicker />
+      <StyledDropdownButton />
     </TimerSettingsContainer>
   );
 };

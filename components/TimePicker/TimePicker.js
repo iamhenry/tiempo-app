@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Picker, StyleSheet } from "react-native";
 
-export default function CustomPicker() {
+export default function TimePicker() {
   const [selectedValue, setSelectedValue] = useState("java");
   return (
     <View style={styles.container}>
