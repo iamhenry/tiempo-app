@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { H5, H6 } from "../Global/Primitives";
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
-import { FlatList } from "react-native";
 
 export const StyledWorkoutCell = styled.View`
   background-color: ${Tokens.color.blueMoon100};
@@ -36,32 +35,14 @@ const WorkoutDuration = styled(H5)`
   color: ${Tokens.color.snowWhite100};
 `;
 
-export const WorkoutCell = () => {
-  const [workout, setWorkout] = useState([
-    {
-      name: "Yoga Stretch",
-      metadata: "Length 3:25, Streak 15",
-      duration: "3:25",
-    },
-    {
-      name: "HIIT Workout",
-      metadata: "Length 3:25, Streak 15",
-      duration: "7:00",
-    },
-  ]);
-
+export const WorkoutCell = ({ item }) => {
   return (
-    <FlatList
-      data={workout}
-      renderItem={({ item }) => (
-        <StyledWorkoutCell>
-          <WorkoutInfo>
-            <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
-            <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>
-          </WorkoutInfo>
-          <WorkoutDuration numberOfLines={1}>{item.duration}</WorkoutDuration>
-        </StyledWorkoutCell>
-      )}
-    />
+    <StyledWorkoutCell>
+      <WorkoutInfo>
+        <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
+        <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>
+      </WorkoutInfo>
+      <WorkoutDuration numberOfLines={1}>{item.duration}</WorkoutDuration>
+    </StyledWorkoutCell>
   );
 };

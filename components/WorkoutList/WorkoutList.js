@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FlatList } from "react-native";
+
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
 import { H2 } from "../Global/Primitives";
@@ -10,6 +12,7 @@ import { StyledButton } from "../Button/Button";
 
 const StyledWorkoutList = styled.View`
   flex: 1;
+  display: flex;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: ${Tokens.spacing.large};
@@ -34,13 +37,29 @@ const SectionHeader = styled.View`
 `;
 
 export function WorkoutList() {
+  const [workout, setWorkout] = useState([
+    {
+      name: "Yoga Stretch",
+      metadata: "Length 3:25, Streak 15",
+      duration: "3:25",
+    },
+    {
+      name: "HIIT Workout",
+      metadata: "Length 3:25, Streak 15",
+      duration: "7:00",
+    },
+  ]);
+
   return (
     <StyledWorkoutList>
       <SectionHeader>
         <SectionTitle>Workouts</SectionTitle>
         <StyledButton primaryTextColor text="Edit" size="small" />
       </SectionHeader>
-      <WorkoutCell />
+      <FlatList
+        data={workout}
+        renderItem={({ item }) => <WorkoutCell item={item} />}
+      />
     </StyledWorkoutList>
   );
 }
