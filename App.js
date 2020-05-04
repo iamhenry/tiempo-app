@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Home from "./screens/Home/Home";
-import { TimerSettings } from "./screens/TimerSettings/TimerSettings";
+import { TimerDetails } from "./screens/TimerDetails/TimerDetails";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 

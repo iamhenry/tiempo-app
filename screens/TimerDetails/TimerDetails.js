@@ -9,20 +9,20 @@ import styled from "styled-components/native";
 import TimePicker from "../../components/TimePicker/TimePicker";
 import { StyledDropdownButton } from "../../components/DropdownButton/DropdownButton";
 
-const TimerSettingsContainer = styled.View`
+const TimerDetailsContainer = styled.View`
   display: flex;
   background-color: ${Tokens.color.summerTime200};
   padding: 40px 20px 0;
 `;
 
-export const TimerSettings = () => {
+export const TimerDetails = () => {
   // TODO:
-  // 1. CREATE A STATE IN WHICH THE TIMER SETTINGS WILL BE SAVED (3 TOTAL)
+  // 1. CREATE A STATE IN WHICH THE TIMER Details WILL BE SAVED (3 TOTAL)
   // 2. CREATE A STATE FOR WORKOUT NAME
-  // 3. CREATE FUNCTION FOR ONSTATE METHOD TO SAVE THE SETTINGS STATE
+  // 3. CREATE FUNCTION FOR ONSTATE METHOD TO SAVE THE Details STATE
 
   return (
-    <TimerSettingsContainer>
+    <TimerDetailsContainer>
       <StyledRoundButton>
         <Feather
           name="arrow-left"
@@ -42,6 +42,6 @@ export const TimerSettings = () => {
       </StyledRoundButton>
       <TimePicker />
       <StyledDropdownButton />
-    </TimerSettingsContainer>
+    </TimerDetailsContainer>
   );
 };
