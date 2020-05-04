@@ -4,6 +4,8 @@ import Quote from "../../components/Quote/Quote";
 import Tokens from "../../components/Global/Tokens";
 import { WorkoutList } from "../../components/WorkoutList/WorkoutList";
 import styled from "styled-components/native";
+import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
+import { Feather } from "@expo/vector-icons";
 
 const HomeContainer = styled.ScrollView`
   background-color: ${Tokens.color.summerTime200};
@@ -23,6 +25,13 @@ export default function Home() {
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />
       <WorkoutList />
+      {/* TODO: 
+      1. Add button to create new workout
+      2. Create pressHandler for button to navigate to TimerDetails
+       */}
+      <StyledRoundButton tall wide>
+        <Feather name="plus" size={48} color={`${Tokens.color.blueMoon200}`} />
+      </StyledRoundButton>
     </HomeContainer>
   );
 }
