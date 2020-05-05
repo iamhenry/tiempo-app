@@ -6,9 +6,15 @@ import { TimerDetails } from "../screens/TimerDetails/TimerDetails";
 const screens = {
   Home: {
     screen: Home,
+    navigationOptions: {
+      header: null,
+    },
   },
   TimerDetails: {
     screen: TimerDetails,
+    navigationOptions: {
+      header: null,
+    },
   },
 };
 

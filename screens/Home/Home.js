@@ -20,7 +20,11 @@ const WorkoutScrollview = styled.ScrollView`
   border-top-left-radius: ${Tokens.borderRadius.default};
 `;
 
-export default function Home() {
+export default function Home({ navigation }) {
+  const pressHandler = () => {
+    navigation.navigate("TimerDetails");
+  };
+
   return (
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />
@@ -29,7 +33,7 @@ export default function Home() {
       1. Add button to create new workout
       2. Create pressHandler for button to navigate to TimerDetails
        */}
-      <StyledRoundButton tall wide>
+      <StyledRoundButton tall wide onPress={pressHandler}>
         <Feather name="plus" size={48} color={`${Tokens.color.blueMoon200}`} />
       </StyledRoundButton>
     </HomeContainer>

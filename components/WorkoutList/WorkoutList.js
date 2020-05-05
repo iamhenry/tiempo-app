@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { FlatList, Button } from "react-native";
+import { FlatList } from "react-native";
 
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
 import { H2 } from "../Global/Primitives";
 import { WorkoutCell } from "../WorkoutCell/WorkoutCell";
 import { StyledButton } from "../Button/Button";
-
-// TODO
-// 1. UPDATE WORKOUT NAME FROM TIMER SCREEN
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const StyledWorkoutList = styled.View`
   flex: 1;
@@ -50,6 +48,10 @@ export function WorkoutList() {
     },
   ]);
 
+  // const pressHandler = () => {
+  //   navigation.navigate("TimerDetails");
+  // };
+
   return (
     <StyledWorkoutList>
       <SectionHeader>
@@ -58,7 +60,11 @@ export function WorkoutList() {
       </SectionHeader>
       <FlatList
         data={workout}
-        renderItem={({ item }) => <WorkoutCell item={item} />}
+        renderItem={({ item }) => (
+          <TouchableOpacity>
+            <WorkoutCell item={item} />
+          </TouchableOpacity>
+        )}
       />
     </StyledWorkoutList>
   );

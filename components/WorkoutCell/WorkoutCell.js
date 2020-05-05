@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { H5, H6 } from "../Global/Primitives";
 import styled from "styled-components/native";
