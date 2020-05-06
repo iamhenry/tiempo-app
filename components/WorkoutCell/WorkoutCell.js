@@ -3,6 +3,7 @@ import React from "react";
 import { H5, H6 } from "../Global/Primitives";
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
+import { useNavigation } from "@react-navigation/native";
 
 export const StyledWorkoutCell = styled.TouchableOpacity`
   background-color: ${Tokens.color.blueMoon100};
@@ -36,8 +37,12 @@ const WorkoutDuration = styled(H5)`
 `;
 
 export const WorkoutCell = ({ item }) => {
+  const navigation = useNavigation();
+  const pressHandler = () => {
+    navigation.navigate("TimerDetails");
+  };
   return (
-    <StyledWorkoutCell>
+    <StyledWorkoutCell onPress={pressHandler}>
       <WorkoutInfo>
         <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
         <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>

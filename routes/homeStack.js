@@ -1,23 +1,18 @@
-import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import Home from "../screens/Home/Home";
 import { TimerDetails } from "../screens/TimerDetails/TimerDetails";
 
-const screens = {
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  TimerDetails: {
-    screen: TimerDetails,
-    navigationOptions: {
-      header: null,
-    },
-  },
+const Stack = createStackNavigator();
+
+export const HomeStack = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="TimerDetails" component={TimerDetails} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
-
-const HomeStack = createStackNavigator(screens);
-
-export default createAppContainer(HomeStack);
