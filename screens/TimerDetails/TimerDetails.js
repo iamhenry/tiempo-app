@@ -1,11 +1,11 @@
 import React from "react";
+import styled from "styled-components/native";
 
 import { H1 } from "../../components/Global/Primitives";
 import { StyledInput } from "../../components/Input/Input";
 import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
 import { Feather, Entypo } from "@expo/vector-icons";
 import Tokens from "../../components/Global/Tokens";
-import styled from "styled-components/native";
 import TimePicker from "../../components/TimePicker/TimePicker";
 import { StyledDropdownButton } from "../../components/DropdownButton/DropdownButton";
 

@@ -6,7 +6,6 @@ import Tokens from "../Global/Tokens";
 import { H2 } from "../Global/Primitives";
 import { WorkoutCell } from "../WorkoutCell/WorkoutCell";
 import { StyledButton } from "../Button/Button";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const StyledWorkoutList = styled.View`
   flex: 1;
@@ -20,8 +19,6 @@ const StyledWorkoutList = styled.View`
   border-top-left-radius: ${Tokens.borderRadius.default};
 `;
 
-// THIS IS HOW YOU STYLE NESTED STYLED COMPONENTS IN REACT NATIVE
-// BY EXTENDING IT
 const SectionTitle = styled(H2)`
   margin-bottom: ${Tokens.spacing.medium};
   color: ${Tokens.color.summerTime200};
@@ -48,10 +45,6 @@ export function WorkoutList() {
     },
   ]);
 
-  // const pressHandler = () => {
-  //   navigation.navigate("TimerDetails");
-  // };
-
   return (
     <StyledWorkoutList>
       <SectionHeader>
@@ -60,11 +53,7 @@ export function WorkoutList() {
       </SectionHeader>
       <FlatList
         data={workout}
-        renderItem={({ item }) => (
-          <TouchableOpacity>
-            <WorkoutCell item={item} />
-          </TouchableOpacity>
-        )}
+        renderItem={({ item }) => <WorkoutCell item={item} />}
       />
     </StyledWorkoutList>
   );

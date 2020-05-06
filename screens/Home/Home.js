@@ -1,9 +1,9 @@
 import React from "react";
+import styled from "styled-components/native";
 
 import Quote from "../../components/Quote/Quote";
 import Tokens from "../../components/Global/Tokens";
 import { WorkoutList } from "../../components/WorkoutList/WorkoutList";
-import styled from "styled-components/native";
 import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
 import { Feather } from "@expo/vector-icons";
 
@@ -20,20 +20,15 @@ const WorkoutScrollview = styled.ScrollView`
   border-top-left-radius: ${Tokens.borderRadius.default};
 `;
 
-export default function Home({ navigation }) {
-  const pressHandler = () => {
-    navigation.navigate("TimerDetails");
-  };
+export default function Home() {
+  // TODO: CREATE A REUSABLE FUNCTION FOR PRESSHANDLER
+  // TAKES A SCREEN NAME AS AN ARGUMENT
 
   return (
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />
       <WorkoutList />
-      {/* TODO: 
-      1. Add button to create new workout
-      2. Create pressHandler for button to navigate to TimerDetails
-       */}
-      <StyledRoundButton tall wide onPress={pressHandler}>
+      <StyledRoundButton tall wide>
         <Feather name="plus" size={48} color={`${Tokens.color.blueMoon200}`} />
       </StyledRoundButton>
     </HomeContainer>

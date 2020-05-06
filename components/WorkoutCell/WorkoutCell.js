@@ -4,7 +4,7 @@ import { H5, H6 } from "../Global/Primitives";
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
 
-export const StyledWorkoutCell = styled.View`
+export const StyledWorkoutCell = styled.TouchableOpacity`
   background-color: ${Tokens.color.blueMoon100};
   border-radius: ${Tokens.spacing.small};
   padding: 20px;
