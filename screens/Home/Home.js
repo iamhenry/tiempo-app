@@ -20,15 +20,18 @@ const WorkoutScrollview = styled.ScrollView`
   border-top-left-radius: ${Tokens.borderRadius.default};
 `;
 
-export default function Home() {
+export default function Home({ navigation }) {
   // TODO: CREATE A REUSABLE FUNCTION FOR PRESSHANDLER
   // TAKES A SCREEN NAME AS AN ARGUMENT
+  const pressHandler = () => {
+    navigation.navigate("TimerDetails");
+  };
 
   return (
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />
       <WorkoutList />
-      <StyledRoundButton tall wide>
+      <StyledRoundButton tall wide onPress={pressHandler}>
         <Feather name="plus" size={48} color={`${Tokens.color.blueMoon200}`} />
       </StyledRoundButton>
     </HomeContainer>

@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 export const HomeStack = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="TimerDetails" component={TimerDetails} />
       </Stack.Navigator>
