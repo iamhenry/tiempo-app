@@ -35,7 +35,12 @@ export const TimerDetails = ({ navigation }) => {
       </StyledRoundButton>
       <H1>3:35</H1>
       <StyledInput />
-      <StyledRoundButton primary tall wide>
+      <StyledRoundButton
+        primary
+        tall
+        wide
+        onPress={() => navigation.navigate("TimerSession")}
+      >
         <Entypo
           name="controller-play"
           size={64}
