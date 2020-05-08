@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-import Home from "./screens/Home/Home";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { HomeStack } from "./routes/homeStack";
+import { TimerSession } from "./screens/TimerSession/TimerSession";
 
 const getFonts = () => {
   return Font.loadAsync({
