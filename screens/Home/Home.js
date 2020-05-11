@@ -21,17 +21,17 @@ const WorkoutScrollview = styled.ScrollView`
 `;
 
 export default function Home({ navigation }) {
-  // TODO: CREATE A REUSABLE FUNCTION FOR PRESSHANDLER
-  // TAKES A SCREEN NAME AS AN ARGUMENT
-  const pressHandler = () => {
-    navigation.navigate("TimerDetails");
-  };
-
   return (
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />
       <WorkoutList />
-      <StyledRoundButton tall wide onPress={pressHandler}>
+      <StyledRoundButton
+        tall
+        wide
+        // 1. CREATE A DEFAULT VALUE FOR WORKOUT SETTINGS
+        // 2. TRY AND PASS IN THE DATA FROM THE WORKOUT SETTINGS OBJECT IN USESTATE TO TEST
+        onPress={() => navigation.navigate("TimerDetails")}
+      >
         <Feather name="plus" size={48} color={`${Tokens.color.blueMoon200}`} />
       </StyledRoundButton>
     </HomeContainer>

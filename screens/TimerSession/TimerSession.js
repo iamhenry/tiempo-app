@@ -5,6 +5,7 @@ import { H1, H5 } from "../../components/Global/Primitives";
 import styled from "styled-components/native";
 import Tokens from "../../components/Global/Tokens";
 import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
+import { useNavigation } from "@react-navigation/native";
 
 const TimerSessionContainer = styled.View`
   background-color: ${Tokens.color.summerTime200};
@@ -25,6 +26,10 @@ const TimerButtonContainer = styled.View`
 `;
 
 export const TimerSession = () => {
+  // TODO: How to Create a Simple React Countdown Timer
+  // https://dev.to/zhiyueyi/how-to-create-a-simple-react-countdown-timer-4mc3
+
+  const navigation = useNavigation();
   return (
     <TimerSessionContainer>
       <TimerDetails>
@@ -32,7 +37,7 @@ export const TimerSession = () => {
         <H5>Yoga Stretch 1/10</H5>
       </TimerDetails>
       <TimerButtonContainer>
-        <StyledRoundButton>
+        <StyledRoundButton onPress={() => navigation.goBack()}>
           <Feather name="x" size={24} color={`${Tokens.color.blueMoon200}`} />
         </StyledRoundButton>
         <StyledRoundButton tall wide primary>

@@ -15,25 +15,25 @@ const TimerDetailsContainer = styled.View`
   padding: 40px 20px 0;
 `;
 
-export const TimerDetails = ({ navigation }) => {
+export const TimerDetails = ({ navigation, route }) => {
   // TODO:
   // 1. CREATE A STATE IN WHICH THE TIMER Details WILL BE SAVED (3 TOTAL)
   // 2. CREATE A STATE FOR WORKOUT NAME
   // 3. CREATE FUNCTION FOR ONSTATE METHOD TO SAVE THE Details STATE
-  const pressHandler = () => {
-    navigation.goBack();
-  };
+
+  const workoutSettings = route.params.workoutSettings;
 
   return (
     <TimerDetailsContainer>
-      <StyledRoundButton onPress={pressHandler}>
+      <StyledRoundButton onPress={() => navigation.goBack()}>
         <Feather
           name="arrow-left"
           size={24}
           color={`${Tokens.color.blueMoon200}`}
         />
       </StyledRoundButton>
-      <H1>3:35</H1>
+      <H1>{workoutSettings.duration}</H1>
+      {/* <H1>3:25</H1> */}
       <StyledInput />
       <StyledRoundButton
         primary

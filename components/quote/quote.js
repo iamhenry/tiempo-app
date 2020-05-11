@@ -23,6 +23,7 @@ const QuotePerson = styled(H5)`
 export default function Quote() {
   return (
     <QuoteContainer>
+      {/* TODO: CREATE JSON FILE WITH QUOTES */}
       <QuoteText>
         I hate every minute of training. But I said, don’t quit. Suffer now and
         live the rest of your life a champion.
