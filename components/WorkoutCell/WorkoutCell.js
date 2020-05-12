@@ -42,7 +42,14 @@ export const WorkoutCell = ({ item }) => {
   return (
     <StyledWorkoutCell
       onPress={() =>
-        navigation.navigate("TimerDetails", { workoutSettings: item })
+        // DO I NEED TO PASS IN THE ENTIRE ITEM OBJECT?
+        // CAN I PASS IN ONLY 3 PARAMS FROM USECONTEXT?
+        // CAN THE SAME 3 PARAMS BE USED IN THE CREATE BUTTON IN HOME SCREEN?
+        navigation.navigate("TimerDetails", {
+          name: item.name,
+          metadata: item.metadata,
+          duration: item.duration,
+        })
       }
     >
       <WorkoutInfo>

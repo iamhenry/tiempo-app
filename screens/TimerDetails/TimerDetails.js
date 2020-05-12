@@ -21,8 +21,7 @@ export const TimerDetails = ({ navigation, route }) => {
   // 2. CREATE A STATE FOR WORKOUT NAME
   // 3. CREATE FUNCTION FOR ONSTATE METHOD TO SAVE THE Details STATE
 
-  const workoutSettings = route.params.workoutSettings;
-
+  const { name, metadata, duration } = route.params;
   return (
     <TimerDetailsContainer>
       <StyledRoundButton onPress={() => navigation.goBack()}>
@@ -32,8 +31,7 @@ export const TimerDetails = ({ navigation, route }) => {
           color={`${Tokens.color.blueMoon200}`}
         />
       </StyledRoundButton>
-      <H1>{workoutSettings.duration}</H1>
-      {/* <H1>3:25</H1> */}
+      <H1>{duration}</H1>
       <StyledInput />
       <StyledRoundButton
         primary

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components/native";
 
 import Quote from "../../components/Quote/Quote";
@@ -6,6 +6,7 @@ import Tokens from "../../components/Global/Tokens";
 import { WorkoutList } from "../../components/WorkoutList/WorkoutList";
 import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
 import { Feather } from "@expo/vector-icons";
+import { WorkoutContext } from "../../Context/WorkoutContext";
 
 const HomeContainer = styled.ScrollView`
   background-color: ${Tokens.color.summerTime200};
@@ -21,6 +22,13 @@ const WorkoutScrollview = styled.ScrollView`
 `;
 
 export default function Home({ navigation }) {
+  // const defaultWorkoutSettings = useState({
+  //   name: "Simple Stretch",
+  //   metadata: "Length 10:00, Streak 5",
+  //   duration: "10:00",
+  // });
+  const { workoutSettings } = useContext(WorkoutContext);
+  console.log(workoutSettings[0]);
   return (
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />
@@ -28,9 +36,14 @@ export default function Home({ navigation }) {
       <StyledRoundButton
         tall
         wide
-        // 1. CREATE A DEFAULT VALUE FOR WORKOUT SETTINGS
-        // 2. TRY AND PASS IN THE DATA FROM THE WORKOUT SETTINGS OBJECT IN USESTATE TO TEST
-        onPress={() => navigation.navigate("TimerDetails")}
+        // TODO: PASS A DEFAULT VALUE FOR WORKOUT SETTINGS IN TIMERDETAILS
+        onPress={() =>
+          navigation.navigate("TimerDetails", {
+            name: workoutSettings[0].name,
+            metadata: workoutSettings[0].metadata,
+            duration: workoutSettings[0].duration,
+          })
+        }
       >
         <Feather name="plus" size={48} color={`${Tokens.color.blueMoon200}`} />
       </StyledRoundButton>
