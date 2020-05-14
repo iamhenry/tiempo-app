@@ -11,6 +11,7 @@ const Input = styled.TextInput`
 
 export const StyledInput = () => {
   const [textValue, onChangeText] = useState("New Workout #1");
+
   return (
     <Input value={textValue} onChangeText={(text) => onChangeText(text)} />
   );

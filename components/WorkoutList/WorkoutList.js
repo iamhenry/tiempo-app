@@ -35,11 +35,19 @@ const SectionHeader = styled.View`
 export function WorkoutList() {
   const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
 
+  // TODO: ADD FUNCTION THAT ENABLES EDIT MODE
+  const editListHandler = () => {};
+
   return (
     <StyledWorkoutList>
       <SectionHeader>
         <SectionTitle>Workouts</SectionTitle>
-        <StyledButton primaryTextColor text="Edit" size="small" />
+        <StyledButton
+          primaryTextColor
+          text="Edit"
+          size="small"
+          onPress={editListHandler}
+        />
       </SectionHeader>
       <FlatList
         data={workoutSettings}

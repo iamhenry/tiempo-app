@@ -5,8 +5,7 @@ import Tokens from "../Global/Tokens";
 import { Feather } from "@expo/vector-icons";
 import { H5 } from "../Global/Primitives";
 
-// TODO
-// 1. UPDATE BUTTON STATE WITH SETTINGS FROM PICKER
+// TODO: UPDATE BUTTON STATE WITH SETTINGS FROM PICKER
 
 const DropdownButton = styled.TouchableOpacity`
   background-color: ${Tokens.color.blueMoon100};
@@ -25,21 +24,21 @@ const DropdownLabel = styled(H5)``;
 
 const DropdownTimeLabel = styled(H5)``;
 
-export const StyledDropdownButton = () => {
+export const StyledDropdownButton = ({ title, value }) => {
   return (
     <DropdownButton>
       <DropdownLabel
         color={`${Tokens.color.summerTime200}`}
         fontFamily={`${Tokens.fontFamily.nunitoBlack}`}
       >
-        Exercise
+        {title}
       </DropdownLabel>
       <TimeContainer>
         <DropdownTimeLabel
           color={`${Tokens.color.snowWhite100}`}
           fontFamily={`${Tokens.fontFamily.nunitoBlack}`}
         >
-          0:15
+          {value}
         </DropdownTimeLabel>
         <Feather
           name="chevron-down"

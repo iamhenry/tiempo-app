@@ -11,8 +11,14 @@ import { StyledDropdownButton } from "../../components/DropdownButton/DropdownBu
 
 const TimerDetailsContainer = styled.View`
   display: flex;
+  flex: 1;
   background-color: ${Tokens.color.summerTime200};
   padding: 40px 20px 0;
+`;
+
+const DropdownContainer = styled.View`
+  background-color: ${Tokens.color.blueMoon200};
+  display: flex;
 `;
 
 export const TimerDetails = ({ navigation, route }) => {
@@ -46,8 +52,12 @@ export const TimerDetails = ({ navigation, route }) => {
           borderRadius={5}
         />
       </StyledRoundButton>
-      <TimePicker />
-      <StyledDropdownButton />
+      <DropdownContainer>
+        <StyledDropdownButton title="Excercise" value="0:20" />
+        <StyledDropdownButton title="Rest" value="0:05" />
+        <StyledDropdownButton title="Repeat" value="X10" />
+        <TimePicker />
+      </DropdownContainer>
     </TimerDetailsContainer>
   );
 };

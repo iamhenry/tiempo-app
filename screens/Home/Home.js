@@ -22,13 +22,13 @@ const WorkoutScrollview = styled.ScrollView`
 `;
 
 export default function Home({ navigation }) {
-  // const defaultWorkoutSettings = useState({
-  //   name: "Simple Stretch",
-  //   metadata: "Length 10:00, Streak 5",
-  //   duration: "10:00",
-  // });
-  const { workoutSettings } = useContext(WorkoutContext);
-  console.log(workoutSettings[0]);
+  const defaultWorkoutSettings = useState({
+    name: "Simple Stretch",
+    metadata: "Length 10:00, Streak 5",
+    duration: "10:00",
+    key: "0",
+  });
+
   return (
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />
@@ -36,12 +36,11 @@ export default function Home({ navigation }) {
       <StyledRoundButton
         tall
         wide
-        // TODO: PASS A DEFAULT VALUE FOR WORKOUT SETTINGS IN TIMERDETAILS
         onPress={() =>
           navigation.navigate("TimerDetails", {
-            name: workoutSettings[0].name,
-            metadata: workoutSettings[0].metadata,
-            duration: workoutSettings[0].duration,
+            name: defaultWorkoutSettings[0].name,
+            metadata: defaultWorkoutSettings[0].metadata,
+            duration: defaultWorkoutSettings[0].duration,
           })
         }
       >

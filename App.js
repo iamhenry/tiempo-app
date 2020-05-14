@@ -25,11 +25,13 @@ export default function App() {
       name: "Yoga Stretch",
       metadata: "Length 3:25, Streak 15",
       duration: "3:25",
+      key: "1",
     },
     {
       name: "HIIT Workout",
       metadata: "Length 3:25, Streak 15",
       duration: "7:00",
+      key: "2",
     },
   ]);
 
