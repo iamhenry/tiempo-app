@@ -5,8 +5,6 @@ import Tokens from "../Global/Tokens";
 import { Feather } from "@expo/vector-icons";
 import { H5 } from "../Global/Primitives";
 
-// TODO: UPDATE BUTTON STATE WITH SETTINGS FROM PICKER
-
 const DropdownButton = styled.TouchableOpacity`
   background-color: ${Tokens.color.blueMoon100};
   padding: ${Tokens.spacing.medium} 20px;

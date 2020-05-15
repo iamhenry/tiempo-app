@@ -24,8 +24,8 @@ const WorkoutScrollview = styled.ScrollView`
 export default function Home({ navigation }) {
   const defaultWorkoutSettings = useState({
     name: "Simple Stretch",
-    metadata: "Length 10:00, Streak 5",
-    duration: "10:00",
+    metadata: "Length 0:00, Streak 5",
+    duration: "0:00",
     key: "0",
   });
 

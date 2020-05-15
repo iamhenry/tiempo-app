@@ -25,15 +25,16 @@ const TimerButtonContainer = styled.View`
   align-items: center;
 `;
 
-export const TimerSession = () => {
+export const TimerSession = ({ route }) => {
   // TODO: How to Create a Simple React Countdown Timer
   // https://dev.to/zhiyueyi/how-to-create-a-simple-react-countdown-timer-4mc3
 
   const navigation = useNavigation();
+  const { duration } = route.params;
   return (
     <TimerSessionContainer>
       <TimerDetails>
-        <TimerCountdownLabel>1:20:15</TimerCountdownLabel>
+        <TimerCountdownLabel>{duration}</TimerCountdownLabel>
         <H5>Yoga Stretch 1/10</H5>
       </TimerDetails>
       <TimerButtonContainer>

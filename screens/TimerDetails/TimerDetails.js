@@ -8,6 +8,8 @@ import { Feather, Entypo } from "@expo/vector-icons";
 import Tokens from "../../components/Global/Tokens";
 import TimePicker from "../../components/TimePicker/TimePicker";
 import { StyledDropdownButton } from "../../components/DropdownButton/DropdownButton";
+import { StyledButton } from "../../components/Button/Button";
+import { Text } from "react-native";
 
 const TimerDetailsContainer = styled.View`
   display: flex;
@@ -27,7 +29,8 @@ export const TimerDetails = ({ navigation, route }) => {
   // 2. CREATE A STATE FOR WORKOUT NAME
   // 3. CREATE FUNCTION FOR ONSTATE METHOD TO SAVE THE Details STATE
 
-  const { name, metadata, duration } = route.params;
+  const { name, metadata, duration, rest, exercise, repeat } = route.params;
+
   return (
     <TimerDetailsContainer>
       <StyledRoundButton onPress={() => navigation.goBack()}>
@@ -37,13 +40,19 @@ export const TimerDetails = ({ navigation, route }) => {
           color={`${Tokens.color.blueMoon200}`}
         />
       </StyledRoundButton>
+      {/* <StyledButton primaryTextColor text="Save" size="small" /> */}
       <H1>{duration}</H1>
+      {/* TODO: CREATE FUNCTION TO SUBMIT WORKOUT SETTINGS */}
       <StyledInput />
       <StyledRoundButton
         primary
         tall
         wide
-        onPress={() => navigation.navigate("TimerSession")}
+        // TODO - CREATE FUNCTION TO START TIMER
+        // 1. CREATE FUNCTION WHICH PASSES WORKOUT DATA TO TIMERSESSION
+        onPress={() =>
+          navigation.navigate("TimerSession", { duration: duration })
+        }
       >
         <Entypo
           name="controller-play"
@@ -53,9 +62,9 @@ export const TimerDetails = ({ navigation, route }) => {
         />
       </StyledRoundButton>
       <DropdownContainer>
-        <StyledDropdownButton title="Excercise" value="0:20" />
-        <StyledDropdownButton title="Rest" value="0:05" />
-        <StyledDropdownButton title="Repeat" value="X10" />
+        <StyledDropdownButton title="Excercise" value={exercise} />
+        <StyledDropdownButton title="Rest" value={rest} />
+        <StyledDropdownButton title="Repeat" value={`${repeat}x`} />
         <TimePicker />
       </DropdownContainer>
     </TimerDetailsContainer>

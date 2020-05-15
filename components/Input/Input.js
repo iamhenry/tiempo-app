@@ -10,9 +10,8 @@ const Input = styled.TextInput`
 `;
 
 export const StyledInput = () => {
-  const [textValue, onChangeText] = useState("New Workout #1");
-
-  return (
-    <Input value={textValue} onChangeText={(text) => onChangeText(text)} />
-  );
+  // TODO - CREATE FUNCTION TO UPDATE STATE AND SUBMITS NEW SETTINGS
+  // 1. BRING IN WORKOUT CONTEXT
+  // 2. UPDATE THE CONTEXT STATE WITH A FUNCTION
+  return <Input placeholder="New Workout" />;
 };

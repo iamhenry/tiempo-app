@@ -49,6 +49,9 @@ export const WorkoutCell = ({ item }) => {
           name: item.name,
           metadata: item.metadata,
           duration: item.duration,
+          exercise: item.exercise,
+          rest: item.rest,
+          repeat: item.repeat,
         })
       }
     >

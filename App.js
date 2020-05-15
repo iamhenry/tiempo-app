@@ -22,16 +22,22 @@ export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [workoutSettings, setWorkoutSettings] = useState([
     {
+      key: "1",
       name: "Yoga Stretch",
       metadata: "Length 3:25, Streak 15",
       duration: "3:25",
-      key: "1",
+      exercise: "0:20",
+      rest: "0:05",
+      repeat: "10",
     },
     {
+      key: "2",
       name: "HIIT Workout",
       metadata: "Length 3:25, Streak 15",
       duration: "7:00",
-      key: "2",
+      exercise: "0:20",
+      rest: "0:05",
+      repeat: "10",
     },
   ]);
 
