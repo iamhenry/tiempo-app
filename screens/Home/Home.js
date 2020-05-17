@@ -14,21 +14,17 @@ const HomeContainer = styled.ScrollView`
   flex: 1;
 `;
 
-const WorkoutScrollview = styled.ScrollView`
-  z-index: 600;
-  background-color: ${Tokens.color.blueMoon200};
-  border-top-right-radius: ${Tokens.borderRadius.default};
-  border-top-left-radius: ${Tokens.borderRadius.default};
-`;
-
 export default function Home({ navigation }) {
   const defaultWorkoutSettings = useState({
     name: "Simple Stretch",
     metadata: "Length 0:00, Streak 5",
     duration: "0:00",
     key: "0",
+    exercise: "0:00",
+    rest: "0:00",
+    repeat: "0",
   });
-
+  console.log();
   return (
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />
@@ -41,6 +37,9 @@ export default function Home({ navigation }) {
             name: defaultWorkoutSettings[0].name,
             metadata: defaultWorkoutSettings[0].metadata,
             duration: defaultWorkoutSettings[0].duration,
+            rest: defaultWorkoutSettings[0].rest,
+            exercise: defaultWorkoutSettings[0].exercise,
+            repeat: defaultWorkoutSettings[0].repeat,
           })
         }
       >

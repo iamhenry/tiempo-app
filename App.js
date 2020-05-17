@@ -24,8 +24,8 @@ export default function App() {
     {
       key: "1",
       name: "Yoga Stretch",
-      metadata: "Length 3:25, Streak 15",
-      duration: "3:25",
+      metadata: "Streak 15",
+      duration: "5:30",
       exercise: "0:20",
       rest: "0:05",
       repeat: "10",
@@ -33,7 +33,7 @@ export default function App() {
     {
       key: "2",
       name: "HIIT Workout",
-      metadata: "Length 3:25, Streak 15",
+      metadata: "Streak 15",
       duration: "7:00",
       exercise: "0:20",
       rest: "0:05",

@@ -33,7 +33,7 @@ const SectionHeader = styled.View`
 `;
 
 export function WorkoutList() {
-  const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
+  const { workoutSettings } = useContext(WorkoutContext);
 
   // TODO: ADD FUNCTION THAT ENABLES SWIPE TO DELETE
   const editListHandler = () => {};

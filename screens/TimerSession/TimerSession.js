@@ -30,12 +30,12 @@ export const TimerSession = ({ route }) => {
   // https://dev.to/zhiyueyi/how-to-create-a-simple-react-countdown-timer-4mc3
 
   const navigation = useNavigation();
-  const { duration } = route.params;
+  const { duration, name } = route.params;
   return (
     <TimerSessionContainer>
       <TimerDetails>
         <TimerCountdownLabel>{duration}</TimerCountdownLabel>
-        <H5>Yoga Stretch 1/10</H5>
+        <H5>{name} 1/10</H5>
       </TimerDetails>
       <TimerButtonContainer>
         <StyledRoundButton onPress={() => navigation.goBack()}>

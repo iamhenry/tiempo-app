@@ -9,9 +9,12 @@ const Input = styled.TextInput`
   color: ${Tokens.color.blueMoon200};
 `;
 
-export const StyledInput = () => {
-  // TODO - CREATE FUNCTION TO UPDATE STATE AND SUBMITS NEW SETTINGS
-  // 1. BRING IN WORKOUT CONTEXT
-  // 2. UPDATE THE CONTEXT STATE WITH A FUNCTION
-  return <Input placeholder="New Workout" />;
+export const StyledInput = ({ addWorkout, changeHandler }) => {
+  return (
+    <Input
+      placeholder="New Workout"
+      onChangeText={changeHandler}
+      addWorkout={() => addWorkout(workoutName)}
+    />
+  );
 };

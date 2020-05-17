@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components/native";
 
 import { H1 } from "../../components/Global/Primitives";
@@ -9,7 +9,7 @@ import Tokens from "../../components/Global/Tokens";
 import TimePicker from "../../components/TimePicker/TimePicker";
 import { StyledDropdownButton } from "../../components/DropdownButton/DropdownButton";
 import { StyledButton } from "../../components/Button/Button";
-import { Text } from "react-native";
+import { WorkoutContext } from "../../Context/WorkoutContext";
 
 const TimerDetailsContainer = styled.View`
   display: flex;
@@ -21,15 +21,28 @@ const TimerDetailsContainer = styled.View`
 const DropdownContainer = styled.View`
   background-color: ${Tokens.color.blueMoon200};
   display: flex;
+  justify-content: space-between;
+  height: 30%;
 `;
 
 export const TimerDetails = ({ navigation, route }) => {
-  // TODO:
-  // 1. CREATE A STATE IN WHICH THE TIMER Details WILL BE SAVED (3 TOTAL)
-  // 2. CREATE A STATE FOR WORKOUT NAME
-  // 3. CREATE FUNCTION FOR ONSTATE METHOD TO SAVE THE Details STATE
+  const { name, duration, rest, exercise, repeat } = route.params;
+  const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
+  const [workoutName, setWorkoutName] = useState("");
 
-  const { name, metadata, duration, rest, exercise, repeat } = route.params;
+  // GRABS TEXT VALUES FROM INPUT FIELD
+  const changeHandler = (val) => {
+    setWorkoutName(val);
+  };
+
+  // TODO - ADD LOCAL STORAGE
+
+  // ADDS THE TEXT VALUE AND APPENDS THEM TO THE STATE
+  const addWorkout = () => {
+    setWorkoutSettings((prevWorkoutSettings) => {
+      return [{ name: workoutName }, ...prevWorkoutSettings];
+    });
+  };
 
   return (
     <TimerDetailsContainer>
@@ -40,19 +53,26 @@ export const TimerDetails = ({ navigation, route }) => {
           color={`${Tokens.color.blueMoon200}`}
         />
       </StyledRoundButton>
-      {/* <StyledButton primaryTextColor text="Save" size="small" /> */}
+      <StyledButton
+        primaryTextColor
+        text="Save"
+        size="small"
+        onPress={addWorkout}
+      />
       <H1>{duration}</H1>
-      {/* TODO: CREATE FUNCTION TO SUBMIT WORKOUT SETTINGS */}
-      <StyledInput />
+      {/* TODO: CREATE FUNCTION TO SAVE WORKOUT SETTINGS */}
+      <StyledInput addWorkout={addWorkout} changeHandler={changeHandler} />
       <StyledRoundButton
         primary
         tall
         wide
-        // TODO - CREATE FUNCTION TO START TIMER
-        // 1. CREATE FUNCTION WHICH PASSES WORKOUT DATA TO TIMERSESSION
         onPress={() =>
-          navigation.navigate("TimerSession", { duration: duration })
+          navigation.navigate("TimerSession", {
+            duration: duration,
+            name: name,
+          })
         }
+        // TODO - CREATE FUNCTION TO START TIMER
       >
         <Entypo
           name="controller-play"
@@ -65,8 +85,8 @@ export const TimerDetails = ({ navigation, route }) => {
         <StyledDropdownButton title="Excercise" value={exercise} />
         <StyledDropdownButton title="Rest" value={rest} />
         <StyledDropdownButton title="Repeat" value={`${repeat}x`} />
-        <TimePicker />
       </DropdownContainer>
+      <TimePicker />
     </TimerDetailsContainer>
   );
 };
