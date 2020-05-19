@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Picker, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
+import NumberPlease from "react-native-number-please";
 
 // TODO
 // 1. CREATE STATE FOR SAVING WORKOUT SETTINGS
@@ -7,26 +8,28 @@ import { View, Picker, StyleSheet } from "react-native";
 // 3. UPDATE THE STATE BASED ON NEW SETTINGS IN USECONTEXT
 
 export default function TimePicker() {
-  const [selectedValue, setSelectedValue] = useState("java");
+  const initialBirthday = [
+    { id: "sec", value: 1 },
+    { id: "min", value: 0 },
+    { id: "hr", value: 0 },
+  ];
+
+  const [birthday, setBirtday] = useState(initialBirthday);
+
+  const date = [
+    { id: "sec", label: "sec", min: 1, max: 59 },
+    { id: "min", label: "min", min: 0, max: 59 },
+    { id: "hr", label: "hr", min: 0, max: 23 },
+  ];
 
   return (
-    <View style={styles.container}>
-      <Picker
-        selectedValue={selectedValue}
-        style={{ height: 50, width: 150 }}
-        onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-      >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-      </Picker>
+    <View>
+      <Text>My birthday</Text>
+      <NumberPlease
+        digits={date}
+        values={birthday}
+        onChange={(values) => setBirtday(values)}
+      />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 40,
-    alignItems: "center",
-  },
-});
