@@ -26,8 +26,13 @@ const DropdownContainer = styled.View`
 `;
 
 export const TimerDetails = ({ navigation, route }) => {
+  // NAVIGATION PROPS
   const { name, duration, rest, exercise, repeat } = route.params;
+
+  // GLOBAL WORKOUTSETTINGS STATE
   const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
+
+  // TEXT INPUT STATE
   const [workoutName, setWorkoutName] = useState("");
 
   // GRABS TEXT VALUES FROM INPUT FIELD
@@ -60,8 +65,11 @@ export const TimerDetails = ({ navigation, route }) => {
         onPress={addWorkout}
       />
       <H1>{duration}</H1>
-      {/* TODO: CREATE FUNCTION TO SAVE WORKOUT SETTINGS */}
-      <StyledInput addWorkout={addWorkout} changeHandler={changeHandler} />
+      <StyledInput
+        addWorkout={addWorkout}
+        changeHandler={changeHandler}
+        workoutName={workoutName}
+      />
       <StyledRoundButton
         primary
         tall
