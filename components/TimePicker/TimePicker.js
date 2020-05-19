@@ -4,7 +4,7 @@ import { View, Picker, StyleSheet } from "react-native";
 // TODO
 // 1. CREATE STATE FOR SAVING WORKOUT SETTINGS
 // 2. CREATE FUNCTION THAT WILL INVOKE THE PICKER FROM THE BUTTON
-// 3. UPDATE THE STATE BASED ON NEW SETTINGS
+// 3. UPDATE THE STATE BASED ON NEW SETTINGS IN USECONTEXT
 
 export default function TimePicker() {
   const [selectedValue, setSelectedValue] = useState("java");
