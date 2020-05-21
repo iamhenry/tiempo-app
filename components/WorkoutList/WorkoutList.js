@@ -9,8 +9,6 @@ import { StyledButton } from "../Button/Button";
 import { WorkoutContext } from "../../Context/WorkoutContext";
 
 const StyledWorkoutList = styled.View`
-  flex: 1;
-  display: flex;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: ${Tokens.spacing.large};
