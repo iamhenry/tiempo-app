@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { View, Text } from "react-native";
 import NumberPlease from "react-native-number-please";
+import moment from "moment";
 
 export default function TimePicker() {
   // CREATE INITIAL VALUES FOR EACH DROPDOWN
   const initialExercise = [
     { id: "hr", value: 0 },
     { id: "min", value: 0 },
-    { id: "sec", value: 1 },
+    { id: "sec", value: 0 },
   ];
 
   const exerciseConfig = [
     { id: "hr", label: "hr", min: 0, max: 23 },
     { id: "min", label: "min", min: 0, max: 59 },
-    { id: "sec", label: "sec", min: 1, max: 59 },
+    { id: "sec", label: "sec", min: 0, max: 59 },
   ];
 
   const initialRest = [
@@ -48,7 +49,7 @@ export default function TimePicker() {
   const initialBirthday = [
     { id: "hr", value: 0 },
     { id: "min", value: 0 },
-    { id: "sec", value: 1 },
+    { id: "sec", value: 0 },
   ];
 
   // STATE AND STATE FUNCTION TO UPDATE STATE
@@ -58,20 +59,26 @@ export default function TimePicker() {
   const date = [
     { id: "hr", label: "hr", min: 0, max: 23 },
     { id: "min", label: "min", min: 0, max: 59 },
-    { id: "sec", label: "sec", min: 1, max: 59 },
+    { id: "sec", label: "sec", min: 0, max: 59 },
   ];
 
-  console.log(exercise);
+  // console.log(exercise);
 
-  // TODO - INCLUDE MOMENT JS FOR TIME FORMATTING
   const hour = exercise[0].value;
   const minute = exercise[1].value;
-  const seconds = exercise[2].value;
+  const second = exercise[2].value;
+
+  // moment({}) IS BEING SET AS AN EMPTY OBJECT FOR A RESET OF THE CURRENT TIME.
+  // https://stackoverflow.com/questions/32813903/convert-thousands-of-seconds-to-hmmss-in-moment-js
+  const momentHour = moment({}).hour(hour).format("HH");
+  const momentMinute = moment({}).minute(minute).format("mm");
+  const momentSecond = moment({}).seconds(second).format("ss");
+  console.log(momentHour);
 
   return (
     <View>
       <Text>
-        Workout {hour}:{minute}:{seconds}
+        Workout {momentHour}:{momentMinute}:{momentSecond}
       </Text>
       <NumberPlease
         digits={exerciseConfig}
