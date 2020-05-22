@@ -80,6 +80,7 @@ export const TimerDetails = ({ navigation, route }) => {
             name: name,
           })
         }
+        // TODO - CREATE BUTTON MORPHING SVG ANIMATION
         // TODO - CREATE FUNCTION TO START TIMER
       >
         <Entypo
