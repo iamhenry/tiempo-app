@@ -6,10 +6,12 @@ import { StyledInput } from "../../components/Input/Input";
 import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
 import { Feather, Entypo } from "@expo/vector-icons";
 import Tokens from "../../components/Global/Tokens";
-import TimePicker from "../../components/TimePicker/TimePicker";
 import { StyledDropdownButton } from "../../components/DropdownButton/DropdownButton";
 import { StyledButton } from "../../components/Button/Button";
 import { WorkoutContext } from "../../Context/WorkoutContext";
+import ExcercisePicker from "../../components/Picker/ExcercisePicker";
+import RestPicker from "../../components/Picker/RestPicker";
+import RepeatPicker from "../../components/Picker/RepeatPicker";
 
 const TimerDetailsContainer = styled.View`
   display: flex;
@@ -95,7 +97,9 @@ export const TimerDetails = ({ navigation, route }) => {
         <StyledDropdownButton title="Rest" value={rest} />
         <StyledDropdownButton title="Repeat" value={`${repeat}x`} />
       </DropdownContainer>
-      <TimePicker />
+      {/* <ExcercisePicker /> */}
+      {/* <RestPicker /> */}
+      <RepeatPicker />
     </TimerDetailsContainer>
   );
 };
