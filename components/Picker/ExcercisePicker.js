@@ -10,9 +10,7 @@ const PickerContainer = styled.View`
   font-size: 20px;
 `;
 
-export default function ExcercisePicker() {
-  // TODO - CREATE DEFAULT CONFIGS FOR USEPICKER HOOK
-  // TODO - USE DEFAULT CONFIG FOR REST AND REPEAT
+export default function ExcercisePicker({ addWorkout }) {
   // TODO - PASS SAVED SETTINGS TO UPDATE WORKOUT CONTEXT
 
   // INITIAL VALUES FOR EACH DROPDOWN
@@ -33,23 +31,25 @@ export default function ExcercisePicker() {
   ];
 
   const onChange = (values) => {
-    setExcerciseDetails(values);
-  };
+    // moment({}) IS BEING SET AS AN EMPTY OBJECT FOR A RESET OF THE CURRENT TIME.
+    // https://stackoverflow.com/questions/32813903/convert-thousands-of-seconds-to-hmmss-in-moment-js
+    const hour = values[0].value;
+    const minute = values[1].value;
+    const second = values[2].value;
+    const momentHour = moment({}).hour(hour).format("HH");
+    const momentMinute = moment({}).minute(minute).format("mm");
+    const momentSecond = moment({}).seconds(second).format("ss");
+    const momentDuration = `${momentHour}:${momentMinute}:${momentSecond}`;
 
-  // moment({}) IS BEING SET AS AN EMPTY OBJECT FOR A RESET OF THE CURRENT TIME.
-  // https://stackoverflow.com/questions/32813903/convert-thousands-of-seconds-to-hmmss-in-moment-js
-  const hour = excerciseDetails[0].value;
-  const minute = excerciseDetails[1].value;
-  const second = excerciseDetails[2].value;
-  const momentHour = moment({}).hour(hour).format("HH");
-  const momentMinute = moment({}).minute(minute).format("mm");
-  const momentSecond = moment({}).seconds(second).format("ss");
+    setExcerciseDetails(values);
+    addWorkout(momentDuration);
+  };
 
   return (
     <PickerContainer>
       <Text>
         {/* NOTE - REMOVE ONCE PICKER IS COMPLETED. ONLY USED TO DISPLAY VALUES */}
-        Workout {momentHour}:{momentMinute}:{momentSecond}
+        {/* Workout {momentDuration} */}
       </Text>
       <NumberPlease
         digits={excerciseConfig}

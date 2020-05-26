@@ -37,18 +37,26 @@ export const TimerDetails = ({ navigation, route }) => {
   // TEXT INPUT STATE
   const [workoutName, setWorkoutName] = useState("");
 
-  // GRABS TEXT VALUES FROM INPUT FIELD
-  const changeHandler = (val) => {
-    setWorkoutName(val);
-  };
+  // CONTAINS VALUES AND SET VALUE FUNCTION FOR EXCERCISE PICKER
+  const [momentDuration, setMomentDuration] = useState("");
+  const [momentRest, setMomentRest] = useState("");
+  const [momentRepeat, setMomentRepeat] = useState("");
 
   // TODO - ADD LOCAL STORAGE
 
-  // ADDS THE TEXT VALUE AND APPENDS THEM TO THE STATE
-  const addWorkout = () => {
+  const handleSave = () => {
     setWorkoutSettings((prevWorkoutSettings) => {
-      return [{ name: workoutName }, ...prevWorkoutSettings];
+      return [
+        {
+          name: workoutName,
+          duration: momentDuration,
+          rest: momentRest,
+          repeat: momentRepeat,
+        },
+        ...prevWorkoutSettings,
+      ];
     });
+    // console.log(momentRest);
   };
 
   return (
@@ -64,14 +72,11 @@ export const TimerDetails = ({ navigation, route }) => {
         primaryTextColor
         text="Save"
         size="small"
-        onPress={addWorkout}
+        onPress={handleSave}
       />
+      {/* TODO: DURATION NEEDS TO BE A CALCULATION OF EXCERCISE, REST, AND REPEAT SETTINGS */}
       <H1>{duration}</H1>
-      <StyledInput
-        addWorkout={addWorkout}
-        changeHandler={changeHandler}
-        workoutName={workoutName}
-      />
+      <StyledInput changeHandler={setWorkoutName} workoutName={workoutName} />
       <StyledRoundButton
         primary
         tall
@@ -97,9 +102,9 @@ export const TimerDetails = ({ navigation, route }) => {
         <StyledDropdownButton title="Rest" value={rest} />
         <StyledDropdownButton title="Repeat" value={`${repeat}x`} />
       </DropdownContainer>
-      {/* <ExcercisePicker /> */}
-      {/* <RestPicker /> */}
-      <RepeatPicker />
+      {/* <ExcercisePicker addWorkout={setMomentDuration} /> */}
+      {/* <RestPicker addWorkout={setMomentRest} /> */}
+      <RepeatPicker addWorkout={setMomentRepeat} />
     </TimerDetailsContainer>
   );
 };

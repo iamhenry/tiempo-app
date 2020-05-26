@@ -9,12 +9,11 @@ const Input = styled.TextInput`
   color: ${Tokens.color.blueMoon200};
 `;
 
-export const StyledInput = ({ addWorkout, changeHandler, workoutName }) => {
+export const StyledInput = ({ changeHandler, workoutName }) => {
   return (
     <Input
       placeholder="New Workout"
       onChangeText={changeHandler}
-      addWorkout={() => addWorkout(workoutName)}
       value={workoutName}
     />
   );

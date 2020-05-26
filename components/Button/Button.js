@@ -37,10 +37,6 @@ const ButtonLabel = styled.Text`
   font-weight: ${Tokens.fontWeight.bold};
   text-align: center;
 `;
-// Ideal API solution for Button...
-// I need: Text color(ie: primary),
-// state(ie: default or disabled), size (ie small)
-// <StyledButton primary small text=""/>
 
 export const StyledButton = ({ text, ...rest }) => {
   return (

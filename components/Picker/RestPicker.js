@@ -10,7 +10,7 @@ const PickerContainer = styled.View`
   font-size: 20px;
 `;
 
-export default function RestPicker() {
+export default function RestPicker({ addWorkout }) {
   // TODO - CREATE DEFAULT CONFIGS FOR USEPICKER HOOK
   // TODO - USE DEFAULT CONFIG FOR REST AND REPEAT
   // TODO - PASS SAVED SETTINGS TO UPDATE WORKOUT CONTEXT
@@ -31,21 +31,23 @@ export default function RestPicker() {
   ];
 
   const onChange = (values) => {
-    setRestDetails(values);
-  };
+    // moment({}) IS BEING SET AS AN EMPTY OBJECT FOR A RESET OF THE CURRENT TIME.
+    // https://stackoverflow.com/questions/32813903/convert-thousands-of-seconds-to-hmmss-in-moment-js
+    const minute = values[0].value;
+    const second = values[1].value;
+    const momentMinute = moment({}).minute(minute).format("mm");
+    const momentSecond = moment({}).seconds(second).format("ss");
+    const momentRest = `${momentMinute}:${momentSecond}`;
 
-  // moment({}) IS BEING SET AS AN EMPTY OBJECT FOR A RESET OF THE CURRENT TIME.
-  // https://stackoverflow.com/questions/32813903/convert-thousands-of-seconds-to-hmmss-in-moment-js
-  const minute = restDetails[0].value;
-  const second = restDetails[1].value;
-  const momentMinute = moment({}).minute(minute).format("mm");
-  const momentSecond = moment({}).seconds(second).format("ss");
+    setRestDetails(values);
+    addWorkout(momentRest);
+  };
 
   return (
     <PickerContainer>
       <Text>
         {/* NOTE - REMOVE ONCE PICKER IS COMPLETED. ONLY USED TO DISPLAY VALUES */}
-        Workout {momentMinute}:{momentSecond}
+        {/* Workout {momentMinute}:{momentSecond} */}
       </Text>
       <NumberPlease
         digits={restConfig}
