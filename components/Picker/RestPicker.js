@@ -11,10 +11,6 @@ const PickerContainer = styled.View`
 `;
 
 export default function RestPicker({ addWorkout }) {
-  // TODO - CREATE DEFAULT CONFIGS FOR USEPICKER HOOK
-  // TODO - USE DEFAULT CONFIG FOR REST AND REPEAT
-  // TODO - PASS SAVED SETTINGS TO UPDATE WORKOUT CONTEXT
-
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialRest = [
     { id: "min", value: 0 },

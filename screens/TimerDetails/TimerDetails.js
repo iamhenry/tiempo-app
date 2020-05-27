@@ -37,7 +37,7 @@ export const TimerDetails = ({ navigation, route }) => {
   // TEXT INPUT STATE
   const [workoutName, setWorkoutName] = useState("");
 
-  // CONTAINS VALUES AND SET VALUE FUNCTION FOR EXCERCISE PICKER
+  // CONTAINS VALUES AND SET VALUE FUNCTION FOR ALL PICKERS
   const [momentDuration, setMomentDuration] = useState("");
   const [momentRest, setMomentRest] = useState("");
   const [momentRepeat, setMomentRepeat] = useState("");
@@ -52,11 +52,11 @@ export const TimerDetails = ({ navigation, route }) => {
           duration: momentDuration,
           rest: momentRest,
           repeat: momentRepeat,
+          // TODO - INSTALL UUID TO GENERATE RANDOM KEYS
         },
         ...prevWorkoutSettings,
       ];
     });
-    // console.log(momentRest);
   };
 
   return (
@@ -74,8 +74,8 @@ export const TimerDetails = ({ navigation, route }) => {
         size="small"
         onPress={handleSave}
       />
-      {/* TODO: DURATION NEEDS TO BE A CALCULATION OF EXCERCISE, REST, AND REPEAT SETTINGS */}
-      <H1>{duration}</H1>
+      {/* TODO - CONVERT SECONDS TO H:MM:SS AND DISPLAY HERE */}
+      <H1>{momentDuration}</H1>
       <StyledInput changeHandler={setWorkoutName} workoutName={workoutName} />
       <StyledRoundButton
         primary
@@ -102,9 +102,9 @@ export const TimerDetails = ({ navigation, route }) => {
         <StyledDropdownButton title="Rest" value={rest} />
         <StyledDropdownButton title="Repeat" value={`${repeat}x`} />
       </DropdownContainer>
-      {/* <ExcercisePicker addWorkout={setMomentDuration} /> */}
+      <ExcercisePicker addWorkout={setMomentDuration} />
       {/* <RestPicker addWorkout={setMomentRest} /> */}
-      <RepeatPicker addWorkout={setMomentRepeat} />
+      {/* <RepeatPicker addWorkout={setMomentRepeat} /> */}
     </TimerDetailsContainer>
   );
 };
