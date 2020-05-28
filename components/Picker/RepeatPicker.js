@@ -24,6 +24,7 @@ export default function RepeatPicker({ setRepeatInSeconds }) {
 
     // SETSTATE FROM PARENT COMPONENT
     setRepeatInSeconds(repeat);
+    // console.log(repeat);
   };
 
   return (

@@ -35,6 +35,7 @@ export default function RestPicker({ setRestInSeconds }) {
 
     // SETSTATE FROM PARENT COMPONENT
     setRestInSeconds(restInSeconds);
+    // console.log(restInSeconds);
   };
 
   return (

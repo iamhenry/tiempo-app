@@ -42,7 +42,7 @@ export const TimerDetails = ({ navigation, route }) => {
   // CONTAINS VALUES AND SET VALUE FUNCTION FOR ALL PICKERS
   const [durationInSeconds, setDurationInSeconds] = useState("");
   const [restInSeconds, setRestInSeconds] = useState("");
-  const [repeatInSeconds, setRepeatInSeconds] = useState("");
+  const [repeatInSeconds, setRepeatInSeconds] = useState(1);
 
   // USING MOMENT JS TO FORMAT FROM SECONDS
   const calculatedDuration =
@@ -52,7 +52,7 @@ export const TimerDetails = ({ navigation, route }) => {
     .format("h:mm:ss", {
       trim: false,
     });
-  console.log(formattedDuration);
+  // console.log(durationInSeconds);
 
   // TODO - ADD LOCAL STORAGE
 

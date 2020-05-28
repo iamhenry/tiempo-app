@@ -38,6 +38,7 @@ export default function ExcercisePicker({ setDurationInSeconds }) {
 
     // SETSTATE FROM PARENT COMPONENT
     setDurationInSeconds(durationInSeconds);
+    // console.log(durationInSeconds);
   };
 
   return (
