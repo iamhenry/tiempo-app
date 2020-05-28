@@ -42,11 +42,11 @@ export const TimerDetails = ({ navigation, route }) => {
   // CONTAINS VALUES AND SET VALUE FUNCTION FOR ALL PICKERS
   const [durationInSeconds, setDurationInSeconds] = useState("");
   const [restInSeconds, setRestInSeconds] = useState("");
-  const [repeatInSeconds, setRepeatInSeconds] = useState(1);
+  const [repeatMultiplier, setRepeatMultiplier] = useState(1);
 
   // USING MOMENT JS TO FORMAT FROM SECONDS
   const calculatedDuration =
-    (durationInSeconds + restInSeconds) * repeatInSeconds;
+    (durationInSeconds + restInSeconds) * repeatMultiplier;
   const formattedDuration = moment
     .duration(calculatedDuration, "seconds")
     .format("h:mm:ss", {
@@ -63,7 +63,7 @@ export const TimerDetails = ({ navigation, route }) => {
           name: workoutName,
           duration: durationInSeconds,
           rest: restInSeconds,
-          repeat: repeatInSeconds,
+          repeat: repeatMultiplier,
           // TODO - INSTALL UUID TO GENERATE RANDOM KEYS
         },
         ...prevWorkoutSettings,
@@ -116,7 +116,7 @@ export const TimerDetails = ({ navigation, route }) => {
       </DropdownContainer> */}
       <ExcercisePicker setDurationInSeconds={setDurationInSeconds} />
       <RestPicker setRestInSeconds={setRestInSeconds} />
-      <RepeatPicker setRepeatInSeconds={setRepeatInSeconds} />
+      <RepeatPicker setRepeatMultiplier={setRepeatMultiplier} />
     </TimerDetailsContainer>
   );
 };

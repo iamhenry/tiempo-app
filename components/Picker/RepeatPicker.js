@@ -8,7 +8,7 @@ const PickerContainer = styled.View`
   font-size: 20px;
 `;
 
-export default function RepeatPicker({ setRepeatInSeconds }) {
+export default function RepeatPicker({ setRepeatMultiplier }) {
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialRepeat = [{ id: "x", value: 0 }];
 
@@ -23,7 +23,7 @@ export default function RepeatPicker({ setRepeatInSeconds }) {
     setRepeatDetails(values);
 
     // SETSTATE FROM PARENT COMPONENT
-    setRepeatInSeconds(repeat);
+    setRepeatMultiplier(repeat);
     // console.log(repeat);
   };
 
