@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text } from "react-native";
 import NumberPlease from "react-native-number-please";
-import moment from "moment";
 import Tokens from "../Global/Tokens";
 import styled from "styled-components";
 
@@ -10,9 +9,7 @@ const PickerContainer = styled.View`
   font-size: 20px;
 `;
 
-export default function ExcercisePicker({ addWorkout }) {
-  // TODO - PASS SAVED SETTINGS TO UPDATE WORKOUT CONTEXT
-
+export default function ExcercisePicker({ setDurationInSeconds }) {
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialExcercise = [
     { id: "hr", value: 0 },
@@ -20,7 +17,7 @@ export default function ExcercisePicker({ addWorkout }) {
     { id: "sec", value: 0 },
   ];
 
-  // WORKOUT STATE
+  // VALUE STATE FOR PICKER
   const [excerciseDetails, setExcerciseDetails] = useState(initialExcercise);
 
   // WORKOUT CONFIG FOR PICKER
@@ -38,7 +35,9 @@ export default function ExcercisePicker({ addWorkout }) {
     const durationInSeconds = hourInSeconds + minuteInSeconds + second;
 
     setExcerciseDetails(values);
-    addWorkout(durationInSeconds);
+
+    // SETSTATE FROM PARENT COMPONENT
+    setDurationInSeconds(durationInSeconds);
   };
 
   return (

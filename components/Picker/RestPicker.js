@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Text } from "react-native";
 import NumberPlease from "react-native-number-please";
-import moment from "moment";
 import Tokens from "../Global/Tokens";
 import styled from "styled-components";
 
@@ -10,7 +9,7 @@ const PickerContainer = styled.View`
   font-size: 20px;
 `;
 
-export default function RestPicker({ addWorkout }) {
+export default function RestPicker({ setRestInSeconds }) {
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialRest = [
     { id: "min", value: 0 },
@@ -27,24 +26,19 @@ export default function RestPicker({ addWorkout }) {
   ];
 
   const onChange = (values) => {
-    // moment({}) IS BEING SET AS AN EMPTY OBJECT FOR A RESET OF THE CURRENT TIME.
-    // https://stackoverflow.com/questions/32813903/convert-thousands-of-seconds-to-hmmss-in-moment-js
-    const minute = values[0].value;
+    const minuteInSeconds = values[0].value * 60;
     const second = values[1].value;
-    const momentMinute = moment({}).minute(minute).format("mm");
-    const momentSecond = moment({}).seconds(second).format("ss");
-    const momentRest = `${momentMinute}:${momentSecond}`;
+
+    const restInSeconds = minuteInSeconds + second;
 
     setRestDetails(values);
-    addWorkout(momentRest);
+
+    // SETSTATE FROM PARENT COMPONENT
+    setRestInSeconds(restInSeconds);
   };
 
   return (
     <PickerContainer>
-      <Text>
-        {/* NOTE - REMOVE ONCE PICKER IS COMPLETED. ONLY USED TO DISPLAY VALUES */}
-        {/* Workout {momentMinute}:{momentSecond} */}
-      </Text>
       <NumberPlease
         digits={restConfig}
         values={restDetails}

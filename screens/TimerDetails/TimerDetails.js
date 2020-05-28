@@ -12,6 +12,8 @@ import { WorkoutContext } from "../../Context/WorkoutContext";
 import ExcercisePicker from "../../components/Picker/ExcercisePicker";
 import RestPicker from "../../components/Picker/RestPicker";
 import RepeatPicker from "../../components/Picker/RepeatPicker";
+import moment from "moment";
+import "moment-duration-format";
 
 const TimerDetailsContainer = styled.View`
   display: flex;
@@ -38,9 +40,19 @@ export const TimerDetails = ({ navigation, route }) => {
   const [workoutName, setWorkoutName] = useState("");
 
   // CONTAINS VALUES AND SET VALUE FUNCTION FOR ALL PICKERS
-  const [momentDuration, setMomentDuration] = useState("");
-  const [momentRest, setMomentRest] = useState("");
-  const [momentRepeat, setMomentRepeat] = useState("");
+  const [durationInSeconds, setDurationInSeconds] = useState("");
+  const [restInSeconds, setRestInSeconds] = useState("");
+  const [repeatInSeconds, setRepeatInSeconds] = useState("");
+
+  // USING MOMENT JS TO FORMAT FROM SECONDS
+  const calculatedDuration =
+    (durationInSeconds + restInSeconds) * repeatInSeconds;
+  const formattedDuration = moment
+    .duration(calculatedDuration, "seconds")
+    .format("h:mm:ss", {
+      trim: false,
+    });
+  console.log(formattedDuration);
 
   // TODO - ADD LOCAL STORAGE
 
@@ -49,9 +61,9 @@ export const TimerDetails = ({ navigation, route }) => {
       return [
         {
           name: workoutName,
-          duration: momentDuration,
-          rest: momentRest,
-          repeat: momentRepeat,
+          duration: durationInSeconds,
+          rest: restInSeconds,
+          repeat: repeatInSeconds,
           // TODO - INSTALL UUID TO GENERATE RANDOM KEYS
         },
         ...prevWorkoutSettings,
@@ -75,9 +87,9 @@ export const TimerDetails = ({ navigation, route }) => {
         onPress={handleSave}
       />
       {/* TODO - CONVERT SECONDS TO H:MM:SS AND DISPLAY HERE */}
-      <H1>{momentDuration}</H1>
+      <H1>{formattedDuration}</H1>
       <StyledInput changeHandler={setWorkoutName} workoutName={workoutName} />
-      <StyledRoundButton
+      {/* <StyledRoundButton
         primary
         tall
         wide
@@ -96,15 +108,15 @@ export const TimerDetails = ({ navigation, route }) => {
           color={`${Tokens.color.snowWhite100}`}
           borderRadius={5}
         />
-      </StyledRoundButton>
-      <DropdownContainer>
+      </StyledRoundButton> */}
+      {/* <DropdownContainer>
         <StyledDropdownButton title="Excercise" value={exercise} />
         <StyledDropdownButton title="Rest" value={rest} />
         <StyledDropdownButton title="Repeat" value={`${repeat}x`} />
-      </DropdownContainer>
-      <ExcercisePicker addWorkout={setMomentDuration} />
-      {/* <RestPicker addWorkout={setMomentRest} /> */}
-      {/* <RepeatPicker addWorkout={setMomentRepeat} /> */}
+      </DropdownContainer> */}
+      <ExcercisePicker setDurationInSeconds={setDurationInSeconds} />
+      <RestPicker setRestInSeconds={setRestInSeconds} />
+      <RepeatPicker setRepeatInSeconds={setRepeatInSeconds} />
     </TimerDetailsContainer>
   );
 };

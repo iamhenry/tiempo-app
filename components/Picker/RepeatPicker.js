@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Text } from "react-native";
 import NumberPlease from "react-native-number-please";
 import Tokens from "../Global/Tokens";
 import styled from "styled-components";
@@ -9,7 +8,7 @@ const PickerContainer = styled.View`
   font-size: 20px;
 `;
 
-export default function RepeatPicker({ addWorkout }) {
+export default function RepeatPicker({ setRepeatInSeconds }) {
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialRepeat = [{ id: "x", value: 0 }];
 
@@ -17,23 +16,18 @@ export default function RepeatPicker({ addWorkout }) {
   const [repeatDetails, setRepeatDetails] = useState(initialRepeat);
 
   // WORKOUT CONFIG FOR PICKER
-  const repeatConfig = [{ id: "x", label: "x", min: 0, max: 50 }];
+  const repeatConfig = [{ id: "x", label: "x", min: 1, max: 50 }];
 
   const onChange = (values) => {
     const repeat = values[0].value;
     setRepeatDetails(values);
-    addWorkout(repeat);
-    console.log(repeat);
-  };
 
-  const repeat = repeatDetails[0].value;
+    // SETSTATE FROM PARENT COMPONENT
+    setRepeatInSeconds(repeat);
+  };
 
   return (
     <PickerContainer>
-      <Text>
-        {/* NOTE - REMOVE ONCE PICKER IS COMPLETED. ONLY USED TO DISPLAY VALUES */}
-        {/* Workout {repeat} */}
-      </Text>
       <NumberPlease
         digits={repeatConfig}
         values={repeatDetails}
