@@ -21,7 +21,6 @@ const QuotePerson = styled(H5)`
   font-weight: ${Tokens.fontWeight.bold};
 `;
 
-// TODO - grab quotes from json file and display a random quote every pull-to-refresh
 const randomQuote = quoteData[Math.floor(Math.random() * quoteData.length)];
 
 export default function Quote() {
