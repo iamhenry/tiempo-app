@@ -9,7 +9,7 @@ const PickerContainer = styled.View`
   font-size: 20px;
 `;
 
-export default function ExcercisePicker({ setDurationInSeconds }) {
+export default function ExcercisePicker({ setExcerciseInSeconds }) {
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialExcercise = [
     { id: "hr", value: 0 },
@@ -37,7 +37,7 @@ export default function ExcercisePicker({ setDurationInSeconds }) {
     setExcerciseDetails(values);
 
     // SETSTATE FROM PARENT COMPONENT
-    setDurationInSeconds(durationInSeconds);
+    setExcerciseInSeconds(durationInSeconds);
     // console.log(durationInSeconds);
   };
 

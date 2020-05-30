@@ -39,19 +39,20 @@ const WorkoutDuration = styled(H5)`
 export const WorkoutCell = ({ item }) => {
   const navigation = useNavigation();
 
+  const navHandler = () => {
+    navigation.navigate("TimerDetails", {
+      name: item.name,
+      metadata: item.metadata,
+      duration: item.duration,
+      exercise: item.exercise,
+      rest: item.rest,
+      repeat: item.repeat,
+      key: item.key,
+    });
+  };
+
   return (
-    <StyledWorkoutCell
-      onPress={() =>
-        navigation.navigate("TimerDetails", {
-          name: item.name,
-          metadata: item.metadata,
-          duration: item.duration,
-          exercise: item.exercise,
-          rest: item.rest,
-          repeat: item.repeat,
-        })
-      }
-    >
+    <StyledWorkoutCell onPress={navHandler} key={item.key}>
       <WorkoutInfo>
         <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
         <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>

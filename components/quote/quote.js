@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { H4, H5 } from "../Global/Primitives";
 import Tokens from "../Global/Tokens";
+import quoteData from "../../data/quoteData.json";
 
 const QuoteContainer = styled.View`
   padding: 0 20px;
@@ -20,15 +21,14 @@ const QuotePerson = styled(H5)`
   font-weight: ${Tokens.fontWeight.bold};
 `;
 
+// TODO - grab quotes from json file and display a random quote every pull-to-refresh
+const randomQuote = quoteData[Math.floor(Math.random() * quoteData.length)];
+
 export default function Quote() {
   return (
     <QuoteContainer>
-      {/* TODO: CREATE JSON FILE WITH QUOTES */}
-      <QuoteText>
-        I hate every minute of training. But I said, don’t quit. Suffer now and
-        live the rest of your life a champion.
-      </QuoteText>
-      <QuotePerson>– Muhammad Ali</QuotePerson>
+      <QuoteText>{randomQuote.quote}</QuoteText>
+      <QuotePerson>– {randomQuote.author}</QuotePerson>
     </QuoteContainer>
   );
 }

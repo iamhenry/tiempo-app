@@ -6,7 +6,6 @@ import Tokens from "../../components/Global/Tokens";
 import { WorkoutList } from "../../components/WorkoutList/WorkoutList";
 import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
 import { Feather } from "@expo/vector-icons";
-import { WorkoutContext } from "../../Context/WorkoutContext";
 
 // TODO - INVESTIGATE WHY SCROLLVIEW FLEXBOX ISN'T WORKING AND WORKS ONLY WITH VIEW COMPONENT
 const HomeContainer = styled.ScrollView`
@@ -21,12 +20,12 @@ export default function Home({ navigation }) {
     name: "Simple Stretch",
     metadata: "Length 0:00, Streak 5",
     duration: "0:00",
-    key: "0",
+    key: 0,
     exercise: "0:00",
     rest: "0:00",
     repeat: "0",
   });
-  console.log();
+
   return (
     <HomeContainer stickyHeaderIndices={[0]}>
       <Quote />

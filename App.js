@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { HomeStack } from "./routes/homeStack";
-import { TimerSession } from "./screens/TimerSession/TimerSession";
 import { WorkoutProvider } from "./Context/WorkoutContext";
 
 const getFonts = () => {
@@ -22,7 +21,7 @@ export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [workoutSettings, setWorkoutSettings] = useState([
     {
-      key: "1",
+      key: 1,
       name: "Yoga Stretch",
       metadata: "Streak 15",
       duration: "5:30",
@@ -31,7 +30,7 @@ export default function App() {
       repeat: "10",
     },
     {
-      key: "2",
+      key: 2,
       name: "HIIT Workout",
       metadata: "Streak 15",
       duration: "7:00",

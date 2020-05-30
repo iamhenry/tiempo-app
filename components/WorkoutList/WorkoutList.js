@@ -33,8 +33,11 @@ const SectionHeader = styled.View`
 export function WorkoutList() {
   const { workoutSettings } = useContext(WorkoutContext);
 
-  // TODO: ADD FUNCTION THAT ENABLES SWIPE TO DELETE
-  const editListHandler = () => {};
+  const editListHandler = () => {
+    // TODO: ADD FUNCTION THAT ENABLES SWIPE TO DELETE
+    // TODO - REDUCE WIDTH OF WORKOUTCELL TO SHOW DELETE BUTTON
+    // https://mobbin.design/apps/threads/v/1.0.1#cwVFtPsvCRkEWZ518ByD
+  };
 
   return (
     <StyledWorkoutList>

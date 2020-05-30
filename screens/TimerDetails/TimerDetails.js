@@ -40,19 +40,20 @@ export const TimerDetails = ({ navigation, route }) => {
   const [workoutName, setWorkoutName] = useState("");
 
   // CONTAINS VALUES AND SET VALUE FUNCTION FOR ALL PICKERS
-  const [durationInSeconds, setDurationInSeconds] = useState("");
-  const [restInSeconds, setRestInSeconds] = useState("");
+  const [excerciseInSeconds, setExcerciseInSeconds] = useState(0);
+  const [restInSeconds, setRestInSeconds] = useState(0);
   const [repeatMultiplier, setRepeatMultiplier] = useState(1);
 
   // USING MOMENT JS TO FORMAT FROM SECONDS
   const calculatedDuration =
-    (durationInSeconds + restInSeconds) * repeatMultiplier;
+    (excerciseInSeconds + restInSeconds) * repeatMultiplier;
   const formattedDuration = moment
     .duration(calculatedDuration, "seconds")
     .format("h:mm:ss", {
       trim: false,
     });
-  // console.log(durationInSeconds);
+
+  const uuid = Math.floor(Math.random() * 10000000 + 1);
 
   // TODO - ADD LOCAL STORAGE
 
@@ -61,10 +62,10 @@ export const TimerDetails = ({ navigation, route }) => {
       return [
         {
           name: workoutName,
-          duration: durationInSeconds,
+          duration: formattedDuration,
           rest: restInSeconds,
           repeat: repeatMultiplier,
-          // TODO - INSTALL UUID TO GENERATE RANDOM KEYS
+          key: uuid,
         },
         ...prevWorkoutSettings,
       ];
@@ -81,12 +82,13 @@ export const TimerDetails = ({ navigation, route }) => {
         />
       </StyledRoundButton>
       <StyledButton
+        // TODO -  DISABLE BUTTON IF calculatedDuration IS GREATER THAN OR EQUAL TO 0 WITH TURNARARY OPERATOR
         primaryTextColor
         text="Save"
         size="small"
         onPress={handleSave}
       />
-      {/* TODO - CONVERT SECONDS TO H:MM:SS AND DISPLAY HERE */}
+      {/* <H1>{duration}</H1> */}
       <H1>{formattedDuration}</H1>
       <StyledInput changeHandler={setWorkoutName} workoutName={workoutName} />
       {/* <StyledRoundButton
@@ -109,14 +111,14 @@ export const TimerDetails = ({ navigation, route }) => {
           borderRadius={5}
         />
       </StyledRoundButton> */}
-      {/* <DropdownContainer>
-        <StyledDropdownButton title="Excercise" value={exercise} />
+      <DropdownContainer>
+        <StyledDropdownButton title="Excercise" value={excerciseInSeconds} />
         <StyledDropdownButton title="Rest" value={rest} />
         <StyledDropdownButton title="Repeat" value={`${repeat}x`} />
-      </DropdownContainer> */}
-      <ExcercisePicker setDurationInSeconds={setDurationInSeconds} />
-      <RestPicker setRestInSeconds={setRestInSeconds} />
-      <RepeatPicker setRepeatMultiplier={setRepeatMultiplier} />
+      </DropdownContainer>
+      <ExcercisePicker setExcerciseInSeconds={setExcerciseInSeconds} />
+      {/* <RestPicker setRestInSeconds={setRestInSeconds} />
+      <RepeatPicker setRepeatMultiplier={setRepeatMultiplier} /> */}
     </TimerDetailsContainer>
   );
 };
