@@ -41,13 +41,8 @@ export const WorkoutCell = ({ item }) => {
 
   const navHandler = () => {
     navigation.navigate("TimerDetails", {
-      name: item.name,
-      metadata: item.metadata,
-      duration: item.duration,
-      exercise: item.exercise,
-      rest: item.rest,
-      repeat: item.repeat,
-      key: item.key,
+      workOutKey: item.key,
+      isUpdating: true,
     });
   };
 

@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { AsyncStorage } from "react-native";
 import styled from "styled-components/native";
 
 import { H1 } from "../../components/Global/Primitives";
@@ -29,12 +30,30 @@ const DropdownContainer = styled.View`
   height: 30%;
 `;
 
+const defaultWorkoutSettings = {
+  name: "Simple Stretch",
+  metadata: "Length 0:00, Streak 5",
+  duration: "0:00",
+  key: 0,
+  exercise: "0:00",
+  rest: "0:00",
+  repeat: "0",
+};
+
 export const TimerDetails = ({ navigation, route }) => {
   // NAVIGATION PROPS
-  const { name, duration, rest, exercise, repeat } = route.params;
+  const { workOutKey = null, isUpdating = false } = route.params;
 
   // GLOBAL WORKOUTSETTINGS STATE
   const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
+
+  let workOutData;
+  if (!workOutKey) {
+    workOutData = defaultWorkoutSettings;
+  } else {
+    workOutData = workoutSettings[workOutKey];
+    // the specific workout that we are looking using object
+  }
 
   // TEXT INPUT STATE
   const [workoutName, setWorkoutName] = useState("");
@@ -58,18 +77,62 @@ export const TimerDetails = ({ navigation, route }) => {
   // TODO - ADD LOCAL STORAGE
 
   const handleSave = () => {
-    setWorkoutSettings((prevWorkoutSettings) => {
-      return [
-        {
-          name: workoutName,
-          duration: formattedDuration,
-          rest: restInSeconds,
-          repeat: repeatMultiplier,
-          key: uuid,
-        },
-        ...prevWorkoutSettings,
-      ];
-    });
+    if (isUpdating) {
+      // grab everything from workoutSettings state
+      let cloneData = { ...workoutSettings };
+
+      // verifies workouSettings has a key otherwise it's null
+      cloneData[workOutData.key] = {
+        ...workOutData,
+        name: workoutName,
+        duration: formattedDuration,
+        rest: restInSeconds,
+        repeat: repeatMultiplier,
+      };
+
+      setWorkoutSettings(cloneData);
+    } else {
+      // everything
+      let cloneData = { ...workoutSettings };
+
+      // new workout
+      let newWorkOut = {
+        name: workoutName,
+        duration: formattedDuration,
+        rest: restInSeconds,
+        repeat: repeatMultiplier,
+        key: uuid,
+      };
+
+      cloneData[uuid] = newWorkOut;
+
+      // shorthand to code above
+      // let cloneData = {
+      //   ...workoutSettings,
+      //   [uuid]: {
+      //     name: workoutName,
+      //     duration: formattedDuration,
+      //     rest: restInSeconds,
+      //     repeat: repeatMultiplier,
+      //     key: uuid
+      //   }
+      // }
+
+      setWorkoutSettings(cloneData);
+
+      // setWorkoutSettings((prevWorkoutSettings) => {
+      //   return [
+      //     {
+      //       name: workoutName,
+      //       duration: formattedDuration,
+      //       rest: restInSeconds,
+      //       repeat: repeatMultiplier,
+      //       key: uuid,
+      //     },
+      //     ...prevWorkoutSettings,
+      //   ];
+      // });
+    }
   };
 
   return (
@@ -88,9 +151,13 @@ export const TimerDetails = ({ navigation, route }) => {
         size="small"
         onPress={handleSave}
       />
-      {/* <H1>{duration}</H1> */}
-      <H1>{formattedDuration}</H1>
-      <StyledInput changeHandler={setWorkoutName} workoutName={workoutName} />
+      {/* TODO - how to display dynamic Picker values? */}
+      {/* <H1>{formattedDuration}</H1> */}
+      <H1>{workOutData.duration}</H1>
+      <StyledInput
+        changeHandler={setWorkoutName}
+        workoutName={workoutSettings}
+      />
       {/* <StyledRoundButton
         primary
         tall
@@ -113,8 +180,8 @@ export const TimerDetails = ({ navigation, route }) => {
       </StyledRoundButton> */}
       <DropdownContainer>
         <StyledDropdownButton title="Excercise" value={excerciseInSeconds} />
-        <StyledDropdownButton title="Rest" value={rest} />
-        <StyledDropdownButton title="Repeat" value={`${repeat}x`} />
+        <StyledDropdownButton title="Rest" value={workOutData.rest} />
+        <StyledDropdownButton title="Repeat" value={`${workOutData.repeat}x`} />
       </DropdownContainer>
       <ExcercisePicker setExcerciseInSeconds={setExcerciseInSeconds} />
       {/* <RestPicker setRestInSeconds={setRestInSeconds} />

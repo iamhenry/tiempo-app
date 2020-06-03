@@ -51,7 +51,7 @@ export function WorkoutList() {
         />
       </SectionHeader>
       <FlatList
-        data={workoutSettings}
+        data={Object.values(workoutSettings)}
         renderItem={({ item }) => <WorkoutCell item={item} />}
       />
     </StyledWorkoutList>
