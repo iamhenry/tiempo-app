@@ -15,6 +15,7 @@ import RestPicker from "../../components/Picker/RestPicker";
 import RepeatPicker from "../../components/Picker/RepeatPicker";
 import moment from "moment";
 import "moment-duration-format";
+import Modal from "react-native-modal";
 
 const TimerDetailsContainer = styled.View`
   display: flex;
@@ -62,6 +63,24 @@ export const TimerDetails = ({ navigation, route }) => {
   const [excerciseInSeconds, setExcerciseInSeconds] = useState(0);
   const [restInSeconds, setRestInSeconds] = useState(0);
   const [repeatMultiplier, setRepeatMultiplier] = useState(1);
+
+  // Picker local states
+  const [isExcerciseModalVisible, setExcerciseModalVisible] = useState(false);
+  const [isRestModalVisible, setRestModalVisible] = useState(false);
+  const [isRepeatModalVisible, setRepeatModalVisible] = useState(false);
+
+  // Toggles modal visibility for onPress in buttons
+  const toggleExerciseModal = () => {
+    setExcerciseModalVisible(!isExcerciseModalVisible);
+  };
+
+  const toggleRestModal = () => {
+    setRestModalVisible(!isRestModalVisible);
+  };
+
+  const toggleRepeatModal = () => {
+    setRepeatModalVisible(!isRepeatModalVisible);
+  };
 
   // USING MOMENT JS TO FORMAT FROM SECONDS
   const calculatedDuration =
@@ -119,19 +138,6 @@ export const TimerDetails = ({ navigation, route }) => {
       // }
 
       setWorkoutSettings(cloneData);
-
-      // setWorkoutSettings((prevWorkoutSettings) => {
-      //   return [
-      //     {
-      //       name: workoutName,
-      //       duration: formattedDuration,
-      //       rest: restInSeconds,
-      //       repeat: repeatMultiplier,
-      //       key: uuid,
-      //     },
-      //     ...prevWorkoutSettings,
-      //   ];
-      // });
     }
   };
 
@@ -158,7 +164,7 @@ export const TimerDetails = ({ navigation, route }) => {
         changeHandler={setWorkoutName}
         workoutName={workoutSettings}
       />
-      {/* <StyledRoundButton
+      <StyledRoundButton
         primary
         tall
         wide
@@ -177,15 +183,54 @@ export const TimerDetails = ({ navigation, route }) => {
           color={`${Tokens.color.snowWhite100}`}
           borderRadius={5}
         />
-      </StyledRoundButton> */}
+      </StyledRoundButton>
       <DropdownContainer>
-        <StyledDropdownButton title="Excercise" value={excerciseInSeconds} />
-        <StyledDropdownButton title="Rest" value={workOutData.rest} />
-        <StyledDropdownButton title="Repeat" value={`${workOutData.repeat}x`} />
+        <StyledDropdownButton
+          title="Excercise"
+          value={excerciseInSeconds}
+          onPress={toggleExerciseModal}
+          onBackdropPress={() => setExcerciseModalVisible(true)}
+        />
+        <StyledDropdownButton
+          title="Rest"
+          value={workOutData.rest}
+          onPress={toggleRestModal}
+          onBackdropPress={() => setRestModalVisible(true)}
+        />
+        <StyledDropdownButton
+          title="Repeat"
+          value={`${workOutData.repeat}x`}
+          onPress={toggleRepeatModal}
+          onBackdropPress={() => setExcerciseModalVisible(true)}
+        />
       </DropdownContainer>
-      <ExcercisePicker setExcerciseInSeconds={setExcerciseInSeconds} />
-      {/* <RestPicker setRestInSeconds={setRestInSeconds} />
-      <RepeatPicker setRepeatMultiplier={setRepeatMultiplier} /> */}
+      <Modal
+        style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
+        isVisible={isExcerciseModalVisible}
+        onBackdropPress={() => setExcerciseModalVisible(false)}
+      >
+        <ExcercisePicker setExcerciseInSeconds={setExcerciseInSeconds} />
+        <StyledButton
+          primaryTextColor
+          text="Done"
+          size="small"
+          onPress={() => setExcerciseModalVisible(false)}
+        />
+      </Modal>
+      <Modal
+        style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
+        isVisible={isRestModalVisible}
+        onBackdropPress={() => setRestModalVisible(false)}
+      >
+        <RestPicker setRestInSeconds={setRestInSeconds} />
+      </Modal>
+      <Modal
+        style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
+        isVisible={isRepeatModalVisible}
+        onBackdropPress={() => setRepeatModalVisible(false)}
+      >
+        <RepeatPicker setRepeatMultiplier={setRepeatMultiplier} />
+      </Modal>
     </TimerDetailsContainer>
   );
 };

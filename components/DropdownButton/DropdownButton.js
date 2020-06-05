@@ -22,9 +22,9 @@ const DropdownLabel = styled(H5)``;
 
 const DropdownTimeLabel = styled(H5)``;
 
-export const StyledDropdownButton = ({ title, value }) => {
+export const StyledDropdownButton = ({ title, value, onPress }) => {
   return (
-    <DropdownButton>
+    <DropdownButton onPress={onPress}>
       <DropdownLabel
         color={`${Tokens.color.summerTime200}`}
         fontFamily={`${Tokens.fontFamily.nunitoBlack}`}
