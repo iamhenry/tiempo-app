@@ -26,13 +26,18 @@ const TimerDetailsContainer = styled.View`
 
 const DropdownContainer = styled.View`
   background-color: ${Tokens.color.blueMoon200};
-  display: flex;
   justify-content: space-between;
   height: 30%;
 `;
 
+const ButtonBar = styled.View`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const defaultWorkoutSettings = {
-  name: "Simple Stretch",
+  name: "New Workout...",
   metadata: "Length 0:00, Streak 5",
   duration: "0:00",
   key: 0,
@@ -143,26 +148,29 @@ export const TimerDetails = ({ navigation, route }) => {
 
   return (
     <TimerDetailsContainer>
-      <StyledRoundButton onPress={() => navigation.goBack()}>
-        <Feather
-          name="arrow-left"
-          size={24}
-          color={`${Tokens.color.blueMoon200}`}
+      <ButtonBar>
+        <StyledRoundButton onPress={() => navigation.goBack()}>
+          <Feather
+            name="arrow-left"
+            size={24}
+            color={`${Tokens.color.blueMoon200}`}
+          />
+        </StyledRoundButton>
+        <StyledButton
+          // TODO -  DISABLE BUTTON IF calculatedDuration IS GREATER THAN OR EQUAL TO 0 WITH TURNARARY OPERATOR
+          primaryTextColor
+          text="Save"
+          size="small"
+          onPress={handleSave}
         />
-      </StyledRoundButton>
-      <StyledButton
-        // TODO -  DISABLE BUTTON IF calculatedDuration IS GREATER THAN OR EQUAL TO 0 WITH TURNARARY OPERATOR
-        primaryTextColor
-        text="Save"
-        size="small"
-        onPress={handleSave}
-      />
+      </ButtonBar>
       {/* TODO - how to display dynamic Picker values? */}
       {/* <H1>{formattedDuration}</H1> */}
       <H1>{workOutData.duration}</H1>
       <StyledInput
         changeHandler={setWorkoutName}
         workoutName={workoutSettings}
+        placeHolder={workOutData.name}
       />
       <StyledRoundButton
         primary
@@ -170,8 +178,8 @@ export const TimerDetails = ({ navigation, route }) => {
         wide
         onPress={() =>
           navigation.navigate("TimerSession", {
-            duration: duration,
-            name: name,
+            duration: formattedDuration,
+            name: workOutData.name,
           })
         }
         // TODO - CREATE BUTTON MORPHING SVG ANIMATION
@@ -203,34 +211,35 @@ export const TimerDetails = ({ navigation, route }) => {
           onPress={toggleRepeatModal}
           onBackdropPress={() => setExcerciseModalVisible(true)}
         />
+
+        <Modal
+          style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
+          isVisible={isExcerciseModalVisible}
+          onBackdropPress={() => setExcerciseModalVisible(false)}
+        >
+          <ExcercisePicker setExcerciseInSeconds={setExcerciseInSeconds} />
+          <StyledButton
+            primaryTextColor
+            text="Done"
+            size="small"
+            onPress={() => setExcerciseModalVisible(false)}
+          />
+        </Modal>
+        <Modal
+          style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
+          isVisible={isRestModalVisible}
+          onBackdropPress={() => setRestModalVisible(false)}
+        >
+          <RestPicker setRestInSeconds={setRestInSeconds} />
+        </Modal>
+        <Modal
+          style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
+          isVisible={isRepeatModalVisible}
+          onBackdropPress={() => setRepeatModalVisible(false)}
+        >
+          <RepeatPicker setRepeatMultiplier={setRepeatMultiplier} />
+        </Modal>
       </DropdownContainer>
-      <Modal
-        style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
-        isVisible={isExcerciseModalVisible}
-        onBackdropPress={() => setExcerciseModalVisible(false)}
-      >
-        <ExcercisePicker setExcerciseInSeconds={setExcerciseInSeconds} />
-        <StyledButton
-          primaryTextColor
-          text="Done"
-          size="small"
-          onPress={() => setExcerciseModalVisible(false)}
-        />
-      </Modal>
-      <Modal
-        style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
-        isVisible={isRestModalVisible}
-        onBackdropPress={() => setRestModalVisible(false)}
-      >
-        <RestPicker setRestInSeconds={setRestInSeconds} />
-      </Modal>
-      <Modal
-        style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
-        isVisible={isRepeatModalVisible}
-        onBackdropPress={() => setRepeatModalVisible(false)}
-      >
-        <RepeatPicker setRepeatMultiplier={setRepeatMultiplier} />
-      </Modal>
     </TimerDetailsContainer>
   );
 };
