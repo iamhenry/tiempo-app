@@ -13,6 +13,7 @@ import { WorkoutContext } from "../../Context/WorkoutContext";
 import ExcercisePicker from "../../components/Picker/ExcercisePicker";
 import RestPicker from "../../components/Picker/RestPicker";
 import RepeatPicker from "../../components/Picker/RepeatPicker";
+import { format, calculateDuration } from "../../libs/time-helper";
 import moment from "moment";
 import "moment-duration-format";
 import Modal from "react-native-modal";
@@ -39,12 +40,16 @@ const ButtonBar = styled.View`
 const defaultWorkoutSettings = {
   name: "New Workout...",
   metadata: "Length 0:00, Streak 5",
-  duration: "0:00",
+  duration: 0,
   key: 0,
-  exercise: "0:00",
-  rest: "0:00",
-  repeat: "0",
+  exercise: 0,
+  rest: 0,
+  repeat: 0,
 };
+
+// NOTE - how to update duration values dynamically from Picker value?
+// NOTE - how to pass duration to TimerSession screen?
+// NOTE - do I alwalys need to create a workOutData in every screen in order to check for key?
 
 export const TimerDetails = ({ navigation, route }) => {
   // NAVIGATION PROPS
@@ -55,6 +60,7 @@ export const TimerDetails = ({ navigation, route }) => {
 
   let workOutData;
   if (!workOutKey) {
+    // if no workOutKey
     workOutData = defaultWorkoutSettings;
   } else {
     workOutData = workoutSettings[workOutKey];
@@ -65,9 +71,11 @@ export const TimerDetails = ({ navigation, route }) => {
   const [workoutName, setWorkoutName] = useState("");
 
   // CONTAINS VALUES AND SET VALUE FUNCTION FOR ALL PICKERS
-  const [excerciseInSeconds, setExcerciseInSeconds] = useState(0);
-  const [restInSeconds, setRestInSeconds] = useState(0);
-  const [repeatMultiplier, setRepeatMultiplier] = useState(1);
+  const [excerciseInSeconds, setExcerciseInSeconds] = useState(
+    workOutData.exercise
+  );
+  const [restInSeconds, setRestInSeconds] = useState(workOutData.rest);
+  const [repeatMultiplier, setRepeatMultiplier] = useState(workOutData.repeat);
 
   // Picker local states
   const [isExcerciseModalVisible, setExcerciseModalVisible] = useState(false);
@@ -87,15 +95,6 @@ export const TimerDetails = ({ navigation, route }) => {
     setRepeatModalVisible(!isRepeatModalVisible);
   };
 
-  // USING MOMENT JS TO FORMAT FROM SECONDS
-  const calculatedDuration =
-    (excerciseInSeconds + restInSeconds) * repeatMultiplier;
-  const formattedDuration = moment
-    .duration(calculatedDuration, "seconds")
-    .format("h:mm:ss", {
-      trim: false,
-    });
-
   const uuid = Math.floor(Math.random() * 10000000 + 1);
 
   // TODO - ADD LOCAL STORAGE
@@ -109,38 +108,36 @@ export const TimerDetails = ({ navigation, route }) => {
       cloneData[workOutData.key] = {
         ...workOutData,
         name: workoutName,
-        duration: formattedDuration,
         rest: restInSeconds,
-        repeat: repeatMultiplier,
+        repeat: Number(repeatMultiplier),
       };
 
       setWorkoutSettings(cloneData);
     } else {
       // everything
-      let cloneData = { ...workoutSettings };
+      // let cloneData = { ...workoutSettings };
 
-      // new workout
-      let newWorkOut = {
-        name: workoutName,
-        duration: formattedDuration,
-        rest: restInSeconds,
-        repeat: repeatMultiplier,
-        key: uuid,
-      };
+      // // new workout
+      // let newWorkOut = {
+      //   name: workoutName,
+      //   duration: formattedDuration,
+      //   rest: restInSeconds,
+      //   repeat: repeatMultiplier,
+      //   key: uuid,
+      // };
 
-      cloneData[uuid] = newWorkOut;
+      // cloneData[uuid] = newWorkOut;
 
       // shorthand to code above
-      // let cloneData = {
-      //   ...workoutSettings,
-      //   [uuid]: {
-      //     name: workoutName,
-      //     duration: formattedDuration,
-      //     rest: restInSeconds,
-      //     repeat: repeatMultiplier,
-      //     key: uuid
-      //   }
-      // }
+      let cloneData = {
+        ...workoutSettings,
+        [uuid]: {
+          name: workoutName,
+          rest: restInSeconds,
+          repeat: Number(repeatMultiplier),
+          key: uuid,
+        },
+      };
 
       setWorkoutSettings(cloneData);
     }
@@ -166,7 +163,7 @@ export const TimerDetails = ({ navigation, route }) => {
       </ButtonBar>
       {/* TODO - how to display dynamic Picker values? */}
       {/* <H1>{formattedDuration}</H1> */}
-      <H1>{workOutData.duration}</H1>
+      <H1>{format(calculateDuration(workOutData))}</H1>
       <StyledInput
         changeHandler={setWorkoutName}
         workoutName={workoutSettings}
@@ -176,12 +173,13 @@ export const TimerDetails = ({ navigation, route }) => {
         primary
         tall
         wide
-        onPress={() =>
+        onPress={() => {
+          handleSave();
           navigation.navigate("TimerSession", {
-            duration: formattedDuration,
-            name: workOutData.name,
-          })
-        }
+            duration: calculateDuration(workOutData),
+            name: workoutName,
+          });
+        }}
         // TODO - CREATE BUTTON MORPHING SVG ANIMATION
         // TODO - CREATE FUNCTION TO START TIMER
       >
@@ -217,7 +215,10 @@ export const TimerDetails = ({ navigation, route }) => {
           isVisible={isExcerciseModalVisible}
           onBackdropPress={() => setExcerciseModalVisible(false)}
         >
-          <ExcercisePicker setExcerciseInSeconds={setExcerciseInSeconds} />
+          <ExcercisePicker
+            setExcerciseInSeconds={setExcerciseInSeconds}
+            excerciseInSeconds={excerciseInSeconds}
+          />
           <StyledButton
             primaryTextColor
             text="Done"

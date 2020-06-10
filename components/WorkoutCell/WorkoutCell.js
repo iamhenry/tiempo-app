@@ -4,6 +4,7 @@ import { H5, H6 } from "../Global/Primitives";
 import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
 import { useNavigation } from "@react-navigation/native";
+import { format, calculateDuration } from "../../libs/time-helper";
 
 export const StyledWorkoutCell = styled.TouchableOpacity`
   background-color: ${Tokens.color.blueMoon100};
@@ -52,7 +53,9 @@ export const WorkoutCell = ({ item }) => {
         <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
         <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>
       </WorkoutInfo>
-      <WorkoutDuration numberOfLines={1}>{item.duration}</WorkoutDuration>
+      <WorkoutDuration numberOfLines={1}>
+        {format(calculateDuration(item))}
+      </WorkoutDuration>
     </StyledWorkoutCell>
   );
 };

@@ -6,6 +6,7 @@ import styled from "styled-components/native";
 import Tokens from "../../components/Global/Tokens";
 import { StyledRoundButton } from "../../components/RoundButton/RoundButton";
 import { useNavigation } from "@react-navigation/native";
+import { format } from "../../libs/time-helper";
 
 const TimerSessionContainer = styled.View`
   background-color: ${Tokens.color.summerTime200};
@@ -31,10 +32,15 @@ export const TimerSession = ({ route }) => {
 
   const navigation = useNavigation();
   const { duration, name } = route.params;
+
+  // grabs the key from the "id" object and extracts the duration from the array
+  // NOTE - how to tell the type of this duration? Needs to be an Int
+  // NOTE - here I have to log the object in order to grab the needed value. Is there a better way without logging the value of the object?
+
   return (
     <TimerSessionContainer>
       <TimerDetails>
-        <TimerCountdownLabel>{duration}</TimerCountdownLabel>
+        <TimerCountdownLabel>{format(duration)}</TimerCountdownLabel>
         <H5>{name} 1/10</H5>
       </TimerDetails>
       <TimerButtonContainer>

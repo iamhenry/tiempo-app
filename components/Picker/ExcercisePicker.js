@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import NumberPlease from "react-native-number-please";
 import Tokens from "../Global/Tokens";
 import styled from "styled-components";
+import { format } from "../../libs/time-helper";
 
 const PickerContainer = styled.View`
   background-color: ${Tokens.color.snowWhite100};
   font-size: 20px;
 `;
 
-export default function ExcercisePicker({ setExcerciseInSeconds }) {
+export default function ExcercisePicker({
+  setExcerciseInSecond,
+  excerciseInSeconds,
+}) {
+  let stringValue = format(excerciseInSeconds);
+
   // INITIAL VALUES FOR EACH DROPDOWN
+
+  // use number function from array in split function
   const initialExcercise = [
     { id: "hr", value: 0 },
     { id: "min", value: 0 },
@@ -42,12 +50,15 @@ export default function ExcercisePicker({ setExcerciseInSeconds }) {
   };
 
   return (
-    <PickerContainer>
-      <NumberPlease
-        digits={excerciseConfig}
-        values={excerciseDetails}
-        onChange={onChange}
-      />
-    </PickerContainer>
+    <>
+      <Text>{stringValue}</Text>
+      <PickerContainer>
+        <NumberPlease
+          digits={excerciseConfig}
+          values={excerciseDetails}
+          onChange={onChange}
+        />
+      </PickerContainer>
+    </>
   );
 }
