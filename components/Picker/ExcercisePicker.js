@@ -16,8 +16,6 @@ export default function ExcercisePicker({
 }) {
   let stringValue = format(excerciseInSeconds);
 
-  // INITIAL VALUES FOR EACH DROPDOWN
-
   // use number function from array in split function
   const initialExcercise = [
     { id: "hr", value: 0 },
@@ -46,7 +44,6 @@ export default function ExcercisePicker({
 
     // SETSTATE FROM PARENT COMPONENT
     setExcerciseInSeconds(durationInSeconds);
-    // console.log(durationInSeconds);
   };
 
   return (

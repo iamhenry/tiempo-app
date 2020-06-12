@@ -47,10 +47,6 @@ const defaultWorkoutSettings = {
   repeat: 0,
 };
 
-// NOTE - how to update duration values dynamically from Picker value?
-// NOTE - how to pass duration to TimerSession screen?
-// NOTE - do I alwalys need to create a workOutData in every screen in order to check for key?
-
 export const TimerDetails = ({ navigation, route }) => {
   // NAVIGATION PROPS
   const { workOutKey = null, isUpdating = false } = route.params;
@@ -63,12 +59,12 @@ export const TimerDetails = ({ navigation, route }) => {
     // if no workOutKey
     workOutData = defaultWorkoutSettings;
   } else {
-    workOutData = workoutSettings[workOutKey];
     // the specific workout that we are looking using object
+    workOutData = workoutSettings[workOutKey];
   }
 
   // TEXT INPUT STATE
-  const [workoutName, setWorkoutName] = useState("");
+  const [workoutName, setWorkoutName] = useState(workOutData.name);
 
   // CONTAINS VALUES AND SET VALUE FUNCTION FOR ALL PICKERS
   const [excerciseInSeconds, setExcerciseInSeconds] = useState(
@@ -161,8 +157,6 @@ export const TimerDetails = ({ navigation, route }) => {
           onPress={handleSave}
         />
       </ButtonBar>
-      {/* TODO - how to display dynamic Picker values? */}
-      {/* <H1>{formattedDuration}</H1> */}
       <H1>{format(calculateDuration(workOutData))}</H1>
       <StyledInput
         changeHandler={setWorkoutName}
