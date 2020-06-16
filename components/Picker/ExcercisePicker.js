@@ -11,16 +11,20 @@ const PickerContainer = styled.View`
 `;
 
 export default function ExcercisePicker({
-  setExcerciseInSecond,
+  setExcerciseInSeconds,
   excerciseInSeconds,
 }) {
+  // converted and format value to be default state for Picker values
   let stringValue = format(excerciseInSeconds);
+  const stringSplitValues = stringValue.split(":"); // split() returns array
+  const splitHour = stringSplitValues[0];
+  const splitMin = stringSplitValues[1];
+  const splitSec = stringSplitValues[2];
 
-  // use number function from array in split function
   const initialExcercise = [
-    { id: "hr", value: 0 },
-    { id: "min", value: 0 },
-    { id: "sec", value: 0 },
+    { id: "hr", value: Number(splitHour) },
+    { id: "min", value: Number(splitMin) },
+    { id: "sec", value: Number(splitSec) },
   ];
 
   // VALUE STATE FOR PICKER
