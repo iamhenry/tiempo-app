@@ -62,6 +62,7 @@ export const TimerDetails = ({ navigation, route }) => {
     // the specific workout that we are looking using object
     workOutData = workoutSettings[workOutKey];
   }
+  console.log(workOutData);
 
   // TEXT INPUT STATE
   const [workoutName, setWorkoutName] = useState(workOutData.name);
