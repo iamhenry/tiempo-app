@@ -12,8 +12,6 @@ export default function RepeatPicker({
   setRepeatMultiplier,
   repeatMultiplier,
 }) {
-  console.log(repeatMultiplier);
-
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialRepeat = [{ id: "x", value: repeatMultiplier }];
 
@@ -29,7 +27,6 @@ export default function RepeatPicker({
 
     // SETSTATE FROM PARENT COMPONENT
     setRepeatMultiplier(repeat);
-    // console.log(repeat);
   };
 
   return (

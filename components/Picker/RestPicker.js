@@ -11,7 +11,7 @@ const PickerContainer = styled.View`
 `;
 
 export default function RestPicker({ setRestInSeconds, restInSeconds }) {
-  // converted and format value to be default state for Picker values
+  // converted and formated value to be default state for Picker values
   const stringPickerValue = format(restInSeconds);
   const stringSplitValues = stringPickerValue.split(":"); // split() returns array
   const splitMin = stringSplitValues[1];
@@ -43,7 +43,6 @@ export default function RestPicker({ setRestInSeconds, restInSeconds }) {
 
     // SETSTATE FROM PARENT COMPONENT
     setRestInSeconds(restInSeconds);
-    // console.log(restInSeconds);
   };
 
   return (
