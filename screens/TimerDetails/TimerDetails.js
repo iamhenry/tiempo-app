@@ -62,7 +62,6 @@ export const TimerDetails = ({ navigation, route }) => {
     // the specific workout that we are looking using object
     workOutData = workoutSettings[workOutKey];
   }
-  console.log(workOutData);
 
   // TEXT INPUT STATE
   const [workoutName, setWorkoutName] = useState(workOutData.name);
@@ -73,6 +72,11 @@ export const TimerDetails = ({ navigation, route }) => {
   );
   const [restInSeconds, setRestInSeconds] = useState(workOutData.rest);
   const [repeatMultiplier, setRepeatMultiplier] = useState(workOutData.repeat);
+
+  const caluculatedDuration =
+    (excerciseInSeconds + restInSeconds) * repeatMultiplier;
+  const formattedDuration = format(caluculatedDuration);
+  // console.log(formattedDuration);
 
   // Picker local states
   const [isExcerciseModalVisible, setExcerciseModalVisible] = useState(false);
@@ -92,6 +96,7 @@ export const TimerDetails = ({ navigation, route }) => {
     setRepeatModalVisible(!isRepeatModalVisible);
   };
 
+  // used for generating a random Key for workout item
   const uuid = Math.floor(Math.random() * 10000000 + 1);
 
   // TODO - ADD LOCAL STORAGE
@@ -158,7 +163,8 @@ export const TimerDetails = ({ navigation, route }) => {
           onPress={handleSave}
         />
       </ButtonBar>
-      <H1>{format(calculateDuration(workOutData))}</H1>
+      <H1>{formattedDuration}</H1>
+      {/* <H1>{format(calculateDuration(workOutData))}</H1> */}
       <StyledInput
         changeHandler={setWorkoutName}
         workoutName={workoutSettings}
