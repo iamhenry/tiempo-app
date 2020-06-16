@@ -24,9 +24,9 @@ export default function App() {
       key: "1",
       name: "Yoga Stretch",
       metadata: "Streak 15",
-      exercise: 1200,
+      exercise: 354,
       rest: 120,
-      repeat: 1,
+      repeat: 3,
     },
     "2": {
       key: "2",
@@ -34,7 +34,7 @@ export default function App() {
       metadata: "Streak 15",
       exercise: 120,
       rest: 120,
-      repeat: 1,
+      repeat: 2,
     },
   });
 

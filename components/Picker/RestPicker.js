@@ -3,17 +3,25 @@ import { Text } from "react-native";
 import NumberPlease from "react-native-number-please";
 import Tokens from "../Global/Tokens";
 import styled from "styled-components";
+import { format } from "../../libs/time-helper";
 
 const PickerContainer = styled.View`
   background-color: ${Tokens.color.snowWhite100};
   font-size: 20px;
 `;
 
-export default function RestPicker({ setRestInSeconds }) {
+export default function RestPicker({ setRestInSeconds, restInSeconds }) {
+  // converted and format value to be default state for Picker values
+  const stringPickerValue = format(restInSeconds);
+  const stringSplitValues = stringPickerValue.split(":"); // split() returns array
+  const splitMin = stringSplitValues[1];
+  const splitSec = stringSplitValues[2];
+  console.log(stringPickerValue);
+
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialRest = [
-    { id: "min", value: 0 },
-    { id: "sec", value: 0 },
+    { id: "min", value: Number(splitMin) },
+    { id: "sec", value: Number(splitSec) },
   ];
 
   // WORKOUT STATE

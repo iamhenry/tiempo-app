@@ -225,14 +225,20 @@ export const TimerDetails = ({ navigation, route }) => {
           isVisible={isRestModalVisible}
           onBackdropPress={() => setRestModalVisible(false)}
         >
-          <RestPicker setRestInSeconds={setRestInSeconds} />
+          <RestPicker
+            setRestInSeconds={setRestInSeconds}
+            restInSeconds={restInSeconds}
+          />
         </Modal>
         <Modal
           style={{ flex: 1, justifyContent: "flex-end", margin: 0 }}
           isVisible={isRepeatModalVisible}
           onBackdropPress={() => setRepeatModalVisible(false)}
         >
-          <RepeatPicker setRepeatMultiplier={setRepeatMultiplier} />
+          <RepeatPicker
+            setRepeatMultiplier={setRepeatMultiplier}
+            repeatMultiplier={repeatMultiplier}
+          />
         </Modal>
       </DropdownContainer>
     </TimerDetailsContainer>

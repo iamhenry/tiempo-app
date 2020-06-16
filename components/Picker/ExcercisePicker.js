@@ -15,8 +15,8 @@ export default function ExcercisePicker({
   excerciseInSeconds,
 }) {
   // converted and format value to be default state for Picker values
-  let stringValue = format(excerciseInSeconds);
-  const stringSplitValues = stringValue.split(":"); // split() returns array
+  let stringPickerValue = format(excerciseInSeconds);
+  const stringSplitValues = stringPickerValue.split(":"); // split() returns array
   const splitHour = stringSplitValues[0];
   const splitMin = stringSplitValues[1];
   const splitSec = stringSplitValues[2];
@@ -52,7 +52,6 @@ export default function ExcercisePicker({
 
   return (
     <>
-      <Text>{stringValue}</Text>
       <PickerContainer>
         <NumberPlease
           digits={excerciseConfig}
