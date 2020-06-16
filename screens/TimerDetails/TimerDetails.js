@@ -188,13 +188,13 @@ export const TimerDetails = ({ navigation, route }) => {
       <DropdownContainer>
         <StyledDropdownButton
           title="Excercise"
-          value={excerciseInSeconds}
+          value={format(excerciseInSeconds)}
           onPress={toggleExerciseModal}
           onBackdropPress={() => setExcerciseModalVisible(true)}
         />
         <StyledDropdownButton
           title="Rest"
-          value={workOutData.rest}
+          value={format(workOutData.rest)}
           onPress={toggleRestModal}
           onBackdropPress={() => setRestModalVisible(true)}
         />
