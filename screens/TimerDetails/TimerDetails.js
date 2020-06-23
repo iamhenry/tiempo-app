@@ -156,7 +156,6 @@ export const TimerDetails = ({ navigation, route }) => {
         />
       </ButtonBar>
       <H1>{formattedDuration}</H1>
-      {/* <H1>{format(calculateDuration(workOutData))}</H1> */}
       <StyledInput
         changeHandler={setWorkoutName}
         workoutName={workoutName}
