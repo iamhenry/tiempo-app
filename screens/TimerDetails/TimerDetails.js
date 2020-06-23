@@ -44,7 +44,7 @@ const defaultWorkoutSettings = {
   key: 0,
   exercise: 0,
   rest: 0,
-  repeat: 0,
+  repeat: 1,
 };
 
 export const TimerDetails = ({ navigation, route }) => {
@@ -73,10 +73,14 @@ export const TimerDetails = ({ navigation, route }) => {
   const [restInSeconds, setRestInSeconds] = useState(workOutData.rest);
   const [repeatMultiplier, setRepeatMultiplier] = useState(workOutData.repeat);
 
-  const caluculatedDuration =
-    (excerciseInSeconds + restInSeconds) * repeatMultiplier;
+  // displays formatted duration in large text label
+  const caluculatedDuration = calculateDuration({
+    exercise: excerciseInSeconds,
+    rest: restInSeconds,
+    repeat: repeatMultiplier,
+  });
+
   const formattedDuration = format(caluculatedDuration);
-  // console.log(formattedDuration);
 
   // Picker local states
   const [isExcerciseModalVisible, setExcerciseModalVisible] = useState(false);
@@ -109,6 +113,7 @@ export const TimerDetails = ({ navigation, route }) => {
       // verifies workouSettings has a key otherwise it's null
       cloneData[workOutData.key] = {
         ...workOutData,
+        exercise: excerciseInSeconds,
         name: workoutName,
         rest: restInSeconds,
         repeat: Number(repeatMultiplier),
@@ -116,24 +121,11 @@ export const TimerDetails = ({ navigation, route }) => {
 
       setWorkoutSettings(cloneData);
     } else {
-      // everything
-      // let cloneData = { ...workoutSettings };
-
-      // // new workout
-      // let newWorkOut = {
-      //   name: workoutName,
-      //   duration: formattedDuration,
-      //   rest: restInSeconds,
-      //   repeat: repeatMultiplier,
-      //   key: uuid,
-      // };
-
-      // cloneData[uuid] = newWorkOut;
-
       // shorthand to code above
       let cloneData = {
         ...workoutSettings,
         [uuid]: {
+          exercise: excerciseInSeconds,
           name: workoutName,
           rest: restInSeconds,
           repeat: Number(repeatMultiplier),
@@ -167,8 +159,8 @@ export const TimerDetails = ({ navigation, route }) => {
       {/* <H1>{format(calculateDuration(workOutData))}</H1> */}
       <StyledInput
         changeHandler={setWorkoutName}
-        workoutName={workoutSettings}
-        placeHolder={workOutData.name}
+        workoutName={workoutName}
+        placeHolder={workoutName}
       />
       <StyledRoundButton
         primary
@@ -177,7 +169,7 @@ export const TimerDetails = ({ navigation, route }) => {
         onPress={() => {
           handleSave();
           navigation.navigate("TimerSession", {
-            duration: calculateDuration(workOutData),
+            duration: caluculatedDuration,
             name: workoutName,
           });
         }}
