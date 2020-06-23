@@ -33,26 +33,18 @@ const SectionHeader = styled.View`
 export function WorkoutList() {
   const { workoutSettings } = useContext(WorkoutContext);
 
-  const editListHandler = () => {
-    // TODO: ADD FUNCTION THAT ENABLES SWIPE TO DELETE
-    // TODO - REDUCE WIDTH OF WORKOUTCELL TO SHOW DELETE BUTTON
-    // https://mobbin.design/apps/threads/v/1.0.1#cwVFtPsvCRkEWZ518ByD
-  };
+  // TODO: ADD FUNCTION THAT ENABLES SWIPE TO DELETE
 
   return (
     <StyledWorkoutList>
       <SectionHeader>
         <SectionTitle>Workouts</SectionTitle>
-        <StyledButton
-          primaryTextColor
-          text="Edit"
-          size="small"
-          onPress={editListHandler}
-        />
       </SectionHeader>
       <FlatList
         data={Object.values(workoutSettings)}
-        renderItem={({ item }) => <WorkoutCell item={item} />}
+        renderItem={({ item }) => (
+          <WorkoutCell onSwipeLeft={() => alert("Swiped")} item={item} />
+        )}
       />
     </StyledWorkoutList>
   );

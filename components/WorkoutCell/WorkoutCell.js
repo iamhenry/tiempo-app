@@ -5,6 +5,9 @@ import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
 import { useNavigation } from "@react-navigation/native";
 import { format, calculateDuration } from "../../libs/time-helper";
+import "react-native-gesture-handler";
+import Swipeable from "react-native-gesture-handler/Swipeable";
+import { View, Text } from "react-native";
 
 export const StyledWorkoutCell = styled.TouchableOpacity`
   background-color: ${Tokens.color.blueMoon100};
@@ -37,7 +40,14 @@ const WorkoutDuration = styled(H5)`
   color: ${Tokens.color.snowWhite100};
 `;
 
-export const WorkoutCell = ({ item }) => {
+const ActionContainer = styled.View``;
+
+const ActionText = styled(H5)`
+  font-family: ${Tokens.fontFamily.nunitoBlack};
+  color: ${Tokens.color.snowWhite100};
+`;
+
+export const WorkoutCell = ({ item, onSwipeLeft }) => {
   const navigation = useNavigation();
 
   const navHandler = () => {
@@ -47,15 +57,29 @@ export const WorkoutCell = ({ item }) => {
     });
   };
 
+  const RightActions = (progress, dragX) => {
+    const scale = dragX.interpolate({
+      inputRange: [0, 200],
+      outputRange: [0, 1],
+    });
+    return (
+      <ActionContainer>
+        <ActionText>Delete</ActionText>
+      </ActionContainer>
+    );
+  };
+
   return (
-    <StyledWorkoutCell onPress={navHandler} key={item.key}>
-      <WorkoutInfo>
-        <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
-        <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>
-      </WorkoutInfo>
-      <WorkoutDuration numberOfLines={1}>
-        {format(calculateDuration(item))}
-      </WorkoutDuration>
-    </StyledWorkoutCell>
+    <Swipeable renderRightActions={RightActions}>
+      <StyledWorkoutCell onPress={navHandler} key={item.key}>
+        <WorkoutInfo>
+          <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
+          <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>
+        </WorkoutInfo>
+        <WorkoutDuration numberOfLines={1}>
+          {format(calculateDuration(item))}
+        </WorkoutDuration>
+      </StyledWorkoutCell>
+    </Swipeable>
   );
 };
