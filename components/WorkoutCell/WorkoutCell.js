@@ -8,6 +8,8 @@ import { format, calculateDuration } from "../../libs/time-helper";
 import "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import { View, Text } from "react-native";
+import { StyledRoundButton } from "../RoundButton/RoundButton";
+import { Feather } from "@expo/vector-icons";
 
 export const StyledWorkoutCell = styled.TouchableOpacity`
   background-color: ${Tokens.color.blueMoon100};
@@ -40,14 +42,14 @@ const WorkoutDuration = styled(H5)`
   color: ${Tokens.color.snowWhite100};
 `;
 
-const ActionContainer = styled.View``;
-
-const ActionText = styled(H5)`
-  font-family: ${Tokens.fontFamily.nunitoBlack};
-  color: ${Tokens.color.snowWhite100};
+const CloseContainer = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  /* background-color: red; */
 `;
 
-export const WorkoutCell = ({ item, onSwipeLeft }) => {
+export const WorkoutCell = ({ item, onSwipeRight }) => {
   const navigation = useNavigation();
 
   const navHandler = () => {
@@ -57,20 +59,21 @@ export const WorkoutCell = ({ item, onSwipeLeft }) => {
     });
   };
 
-  const RightActions = (progress, dragX) => {
-    const scale = dragX.interpolate({
-      inputRange: [0, 200],
-      outputRange: [0, 1],
-    });
+  const RightActions = () => {
     return (
-      <ActionContainer>
-        <ActionText>Delete</ActionText>
-      </ActionContainer>
+      <CloseContainer>
+        <StyledRoundButton onPress={onSwipeRight}>
+          <Feather name="x" size={24} color={`${Tokens.color.blueMoon200}`} />
+        </StyledRoundButton>
+      </CloseContainer>
     );
   };
 
   return (
-    <Swipeable renderRightActions={RightActions}>
+    <Swipeable
+      renderRightActions={RightActions}
+      // onSwipeableRightOpen={onSwipeRight}
+    >
       <StyledWorkoutCell onPress={navHandler} key={item.key}>
         <WorkoutInfo>
           <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>

@@ -13,7 +13,6 @@ const RoundButton = styled.TouchableOpacity`
   border-radius: 100px;
   display: flex;
   justify-content: center;
-  /* align-self: center; */
   align-items: center;
 `;
 

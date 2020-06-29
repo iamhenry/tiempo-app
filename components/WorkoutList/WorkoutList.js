@@ -33,7 +33,12 @@ const SectionHeader = styled.View`
 export function WorkoutList() {
   const { workoutSettings } = useContext(WorkoutContext);
 
-  // TODO: ADD FUNCTION THAT ENABLES SWIPE TO DELETE
+  const removeItem = (key) => {
+    // TODO: remove item from workout list
+    // find the key to the item
+    // remove the item
+    console.log("workoutSettings", workoutSettings[key]);
+  };
 
   return (
     <StyledWorkoutList>
@@ -43,7 +48,7 @@ export function WorkoutList() {
       <FlatList
         data={Object.values(workoutSettings)}
         renderItem={({ item }) => (
-          <WorkoutCell onSwipeLeft={() => alert("Swiped")} item={item} />
+          <WorkoutCell onSwipeRight={removeItem} item={item} />
         )}
       />
     </StyledWorkoutList>
