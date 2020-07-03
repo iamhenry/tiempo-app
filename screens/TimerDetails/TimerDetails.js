@@ -158,7 +158,8 @@ export const TimerDetails = ({ navigation, route }) => {
       <StyledInput
         changeHandler={setWorkoutName}
         workoutName={workoutName}
-        placeHolder={workoutName}
+        // placeHolder={workoutName}
+        placeHolder="New Workout..."
       />
       <StyledRoundButton
         primary

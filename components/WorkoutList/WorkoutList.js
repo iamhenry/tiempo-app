@@ -47,20 +47,13 @@ export function WorkoutList() {
   const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
 
   const removeItem = (key) => {
-    // TODO: remove item from workout list
-
     // copy the current State
     const cloneData = { ...workoutSettings };
-
-    // find the key to the item
-    // why doesn't this work???
-    // const itemId = cloneData[key];
 
     // remove the item
     delete cloneData[key];
 
-    // update the Context
-    console.log("workoutSettings:", cloneData);
+    // update the Context with the newly modified cloned data
     setWorkoutSettings(cloneData);
   };
 
