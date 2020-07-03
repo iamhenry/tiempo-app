@@ -121,7 +121,6 @@ export const TimerDetails = ({ navigation, route }) => {
 
       setWorkoutSettings(cloneData);
     } else {
-      // shorthand to code above
       let cloneData = {
         ...workoutSettings,
         [uuid]: {
@@ -191,13 +190,13 @@ export const TimerDetails = ({ navigation, route }) => {
         />
         <StyledDropdownButton
           title="Rest"
-          value={format(workOutData.rest)}
+          value={format(restInSeconds)}
           onPress={toggleRestModal}
           onBackdropPress={() => setRestModalVisible(true)}
         />
         <StyledDropdownButton
           title="Repeat"
-          value={`${workOutData.repeat}x`}
+          value={`${repeatMultiplier}x`}
           onPress={toggleRepeatModal}
           onBackdropPress={() => setExcerciseModalVisible(true)}
         />

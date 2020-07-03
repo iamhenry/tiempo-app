@@ -7,7 +7,6 @@ import { useNavigation } from "@react-navigation/native";
 import { format, calculateDuration } from "../../libs/time-helper";
 import "react-native-gesture-handler";
 import Swipeable from "react-native-gesture-handler/Swipeable";
-import { View, Text } from "react-native";
 import { StyledRoundButton } from "../RoundButton/RoundButton";
 import { Feather } from "@expo/vector-icons";
 
@@ -62,7 +61,7 @@ export const WorkoutCell = ({ item, onSwipeRight }) => {
   const RightActions = () => {
     return (
       <CloseContainer>
-        <StyledRoundButton onPress={onSwipeRight}>
+        <StyledRoundButton onPress={() => onSwipeRight(item.key)}>
           <Feather name="x" size={24} color={`${Tokens.color.blueMoon200}`} />
         </StyledRoundButton>
       </CloseContainer>
@@ -70,10 +69,7 @@ export const WorkoutCell = ({ item, onSwipeRight }) => {
   };
 
   return (
-    <Swipeable
-      renderRightActions={RightActions}
-      // onSwipeableRightOpen={onSwipeRight}
-    >
+    <Swipeable renderRightActions={RightActions}>
       <StyledWorkoutCell onPress={navHandler} key={item.key}>
         <WorkoutInfo>
           <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>

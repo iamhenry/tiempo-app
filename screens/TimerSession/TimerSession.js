@@ -33,8 +33,6 @@ export const TimerSession = ({ route }) => {
   const navigation = useNavigation();
   const { duration, name } = route.params;
 
-  console.log("Duration:", duration);
-
   return (
     <TimerSessionContainer>
       <TimerDetails>

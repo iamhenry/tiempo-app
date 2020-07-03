@@ -16,7 +16,6 @@ export default function RestPicker({ setRestInSeconds, restInSeconds }) {
   const stringSplitValues = stringPickerValue.split(":"); // split() returns array
   const splitMin = stringSplitValues[1];
   const splitSec = stringSplitValues[2];
-  console.log(stringPickerValue);
 
   // INITIAL VALUES FOR EACH DROPDOWN
   const initialRest = [

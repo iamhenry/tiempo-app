@@ -5,7 +5,6 @@ import styled from "styled-components/native";
 import Tokens from "../Global/Tokens";
 import { H2 } from "../Global/Primitives";
 import { WorkoutCell } from "../WorkoutCell/WorkoutCell";
-import { StyledButton } from "../Button/Button";
 import { WorkoutContext } from "../../Context/WorkoutContext";
 
 const StyledWorkoutList = styled.View`
@@ -30,14 +29,39 @@ const SectionHeader = styled.View`
   justify-content: space-between;
 `;
 
+//NOTE - discuss both types of objects structures
+/* 
+  const data = {
+    {
+      animal: "dog",
+      age: 7
+    },
+    {
+      animal: "cat",
+      age: 4
+    }
+  }
+*/
+
 export function WorkoutList() {
-  const { workoutSettings } = useContext(WorkoutContext);
+  const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
 
   const removeItem = (key) => {
     // TODO: remove item from workout list
+
+    // copy the current State
+    const cloneData = { ...workoutSettings };
+
     // find the key to the item
+    // why doesn't this work???
+    // const itemId = cloneData[key];
+
     // remove the item
-    console.log("workoutSettings", workoutSettings[key]);
+    delete cloneData[key];
+
+    // update the Context
+    console.log("workoutSettings:", cloneData);
+    setWorkoutSettings(cloneData);
   };
 
   return (
