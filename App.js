@@ -4,6 +4,7 @@ import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { HomeStack } from "./routes/homeStack";
 import { WorkoutProvider } from "./Context/WorkoutContext";
+import { AsyncStorage } from "react-native";
 
 const getFonts = () => {
   return Font.loadAsync({
@@ -37,6 +38,18 @@ export default function App() {
       repeat: 2,
     },
   });
+
+  // create async save function
+  const saveAsyncStorage = () => {
+    try {
+    } catch {}
+  };
+
+  // create async remove function
+  const removeAsyncStorage = () => {
+    try {
+    } catch {}
+  };
 
   if (fontsLoaded) {
     return (
