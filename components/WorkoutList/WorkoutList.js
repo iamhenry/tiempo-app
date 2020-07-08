@@ -29,22 +29,12 @@ const SectionHeader = styled.View`
   justify-content: space-between;
 `;
 
-//NOTE - discuss both types of objects structures
-/* 
-  const data = {
-    {
-      animal: "dog",
-      age: 7
-    },
-    {
-      animal: "cat",
-      age: 4
-    }
-  }
-*/
-
 export function WorkoutList() {
-  const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
+  const {
+    workoutSettings,
+    setWorkoutSettings,
+    removeAsyncStorage,
+  } = useContext(WorkoutContext);
 
   const removeItem = (key) => {
     // copy the current State
@@ -55,6 +45,7 @@ export function WorkoutList() {
 
     // update the Context with the newly modified cloned data
     setWorkoutSettings(cloneData);
+    removeAsyncStorage();
   };
 
   return (

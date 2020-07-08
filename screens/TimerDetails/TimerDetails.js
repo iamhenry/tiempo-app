@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { AsyncStorage } from "react-native";
 import styled from "styled-components/native";
 
 import { H1 } from "../../components/Global/Primitives";
@@ -52,7 +51,9 @@ export const TimerDetails = ({ navigation, route }) => {
   const { workOutKey = null, isUpdating = false } = route.params;
 
   // GLOBAL WORKOUTSETTINGS STATE
-  const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
+  const { workoutSettings, setWorkoutSettings, saveAsyncStorage } = useContext(
+    WorkoutContext
+  );
 
   let workOutData;
   if (!workOutKey) {
@@ -103,8 +104,6 @@ export const TimerDetails = ({ navigation, route }) => {
   // used for generating a random Key for workout item
   const uuid = Math.floor(Math.random() * 10000000 + 1);
 
-  // TODO - ADD LOCAL STORAGE
-
   const handleSave = () => {
     if (isUpdating) {
       // grab everything from workoutSettings state
@@ -120,6 +119,7 @@ export const TimerDetails = ({ navigation, route }) => {
       };
 
       setWorkoutSettings(cloneData);
+      saveAsyncStorage();
     } else {
       let cloneData = {
         ...workoutSettings,
@@ -133,6 +133,7 @@ export const TimerDetails = ({ navigation, route }) => {
       };
 
       setWorkoutSettings(cloneData);
+      saveAsyncStorage();
     }
   };
 

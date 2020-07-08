@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
@@ -40,20 +40,55 @@ export default function App() {
   });
 
   // create async save function
-  const saveAsyncStorage = () => {
+  const saveAsyncStorage = async () => {
     try {
-    } catch {}
+      await AsyncStorage.setItem("Workout", JSON.stringify(workoutSettings));
+    } catch (err) {
+      alert(err);
+    }
   };
 
-  // create async remove function
-  const removeAsyncStorage = () => {
+  // create async load function
+  const loadAsyncStorage = async () => {
     try {
-    } catch {}
+      let jsonValue = await AsyncStorage.getItem("Workout");
+
+      if (jsonValue !== null) {
+        setWorkoutSettings(JSON.parse(jsonValue));
+        console.log("setWorkoutSettings", setWorkoutSettings);
+      }
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  // loads the stored data when loading
+  useEffect(() => {
+    loadAsyncStorage();
+  }, []);
+
+  // create async remove function
+  const removeAsyncStorage = async () => {
+    try {
+      await AsyncStorage.removeItem("Workout");
+    } catch (err) {
+      alert(err);
+    } finally {
+      setWorkoutSettings("");
+    }
   };
 
   if (fontsLoaded) {
     return (
-      <WorkoutProvider value={{ workoutSettings, setWorkoutSettings }}>
+      <WorkoutProvider
+        value={{
+          workoutSettings,
+          setWorkoutSettings,
+          saveAsyncStorage,
+          loadAsyncStorage,
+          removeAsyncStorage,
+        }}
+      >
         <HomeStack />
       </WorkoutProvider>
     );
