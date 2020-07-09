@@ -55,7 +55,6 @@ export default function App() {
 
       if (jsonValue !== null) {
         setWorkoutSettings(JSON.parse(jsonValue));
-        console.log("setWorkoutSettings", setWorkoutSettings);
       }
     } catch (err) {
       alert(err);

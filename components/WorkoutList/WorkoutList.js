@@ -6,6 +6,7 @@ import Tokens from "../Global/Tokens";
 import { H2 } from "../Global/Primitives";
 import { WorkoutCell } from "../WorkoutCell/WorkoutCell";
 import { WorkoutContext } from "../../Context/WorkoutContext";
+import { WorkoutListEmptyState } from "./WorkoutListEmptyState";
 
 const StyledWorkoutList = styled.View`
   padding-left: 20px;
@@ -48,17 +49,24 @@ export function WorkoutList() {
     removeAsyncStorage();
   };
 
+  const numberOfKeys = Object.keys(workoutSettings).length;
+
   return (
     <StyledWorkoutList>
       <SectionHeader>
         <SectionTitle>Workouts</SectionTitle>
       </SectionHeader>
-      <FlatList
-        data={Object.values(workoutSettings)}
-        renderItem={({ item }) => (
-          <WorkoutCell onSwipeRight={removeItem} item={item} />
-        )}
-      />
+      {/* if workouts greater than 1, display Flatlist, otherwise display empty state */}
+      {numberOfKeys > 1 ? (
+        <FlatList
+          data={Object.values(workoutSettings)}
+          renderItem={({ item }) => (
+            <WorkoutCell onSwipeRight={removeItem} item={item} />
+          )}
+        />
+      ) : (
+        <WorkoutListEmptyState />
+      )}
     </StyledWorkoutList>
   );
 }
