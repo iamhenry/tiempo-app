@@ -21,10 +21,8 @@ export const WorkoutListEmptyState = () => {
   return (
     <Container>
       <Title>No Workouts</Title>
-      <Message>
-        There are no timers setup at the moment. Tap the button below to create
-        one.
-      </Message>
+      <Message>There are no timers setup at the moment.</Message>
+      <Message>Tap the button below to create one.</Message>
     </Container>
   );
 };
