@@ -2,15 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { H5 } from "../Global/Primitives";
 import Tokens from "../Global/Tokens";
-import Svg, {
-  Circle,
-  Rect,
-  Path,
-  G,
-  Defs,
-  ClipPath,
-  Dect,
-} from "react-native-svg";
+import Svg, { Path, G } from "react-native-svg";
 
 const Container = styled.View`
   display: flex;

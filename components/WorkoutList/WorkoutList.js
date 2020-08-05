@@ -7,6 +7,7 @@ import { H2 } from "../Global/Primitives";
 import { WorkoutCell } from "../WorkoutCell/WorkoutCell";
 import { WorkoutContext } from "../../Context/WorkoutContext";
 import { WorkoutListEmptyState } from "./WorkoutListEmptyState";
+import { deleteItem } from "../../libs/store-helper";
 
 const StyledWorkoutList = styled.View`
   padding-left: 20px;
@@ -34,7 +35,7 @@ export function WorkoutList() {
   const {
     workoutSettings,
     setWorkoutSettings,
-    removeAsyncStorage,
+    // removeAsyncStorage,
   } = useContext(WorkoutContext);
 
   const removeItem = (key) => {
@@ -46,7 +47,9 @@ export function WorkoutList() {
 
     // update the Context with the newly modified cloned data
     setWorkoutSettings(cloneData);
-    removeAsyncStorage();
+    deleteItem(key);
+
+    // removeAsyncStorage();
   };
 
   const numberOfKeys = Object.keys(workoutSettings).length;
@@ -56,8 +59,7 @@ export function WorkoutList() {
       <SectionHeader>
         <SectionTitle>Workouts</SectionTitle>
       </SectionHeader>
-      {/* if workouts greater than 1, display Flatlist, otherwise display empty state */}
-      {numberOfKeys > 1 ? (
+      {numberOfKeys > 0 ? (
         <FlatList
           data={Object.values(workoutSettings)}
           renderItem={({ item }) => (

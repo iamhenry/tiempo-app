@@ -16,6 +16,7 @@ import { format, calculateDuration } from "../../libs/time-helper";
 import moment from "moment";
 import "moment-duration-format";
 import Modal from "react-native-modal";
+import { save } from "../../libs/store-helper";
 
 const TimerDetailsContainer = styled.View`
   display: flex;
@@ -51,9 +52,7 @@ export const TimerDetails = ({ navigation, route }) => {
   const { workOutKey = null, isUpdating = false } = route.params;
 
   // GLOBAL WORKOUTSETTINGS STATE
-  const { workoutSettings, setWorkoutSettings, saveAsyncStorage } = useContext(
-    WorkoutContext
-  );
+  const { workoutSettings, setWorkoutSettings } = useContext(WorkoutContext);
 
   let workOutData;
   if (!workOutKey) {
@@ -119,7 +118,7 @@ export const TimerDetails = ({ navigation, route }) => {
       };
 
       setWorkoutSettings(cloneData);
-      saveAsyncStorage();
+      save(cloneData);
     } else {
       let cloneData = {
         ...workoutSettings,
@@ -133,7 +132,7 @@ export const TimerDetails = ({ navigation, route }) => {
       };
 
       setWorkoutSettings(cloneData);
-      saveAsyncStorage();
+      save(cloneData);
     }
   };
 

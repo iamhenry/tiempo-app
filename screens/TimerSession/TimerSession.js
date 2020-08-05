@@ -33,6 +33,18 @@ export const TimerSession = ({ route }) => {
   const navigation = useNavigation();
   const { duration, name } = route.params;
 
+  const pauseSession = () => {
+    console.log("paused");
+  };
+
+  const resumeSession = () => {
+    console.log("resume");
+  };
+
+  const resetSession = () => {
+    console.log("reset");
+  };
+
   return (
     <TimerSessionContainer>
       <TimerDetails>
@@ -43,14 +55,14 @@ export const TimerSession = ({ route }) => {
         <StyledRoundButton onPress={() => navigation.goBack()}>
           <Feather name="x" size={24} color={`${Tokens.color.blueMoon200}`} />
         </StyledRoundButton>
-        <StyledRoundButton tall wide primary>
+        <StyledRoundButton tall wide primary onPress={pauseSession}>
           <Feather
             name="pause"
             size={48}
             color={`${Tokens.color.snowWhite100}`}
           />
         </StyledRoundButton>
-        <StyledRoundButton>
+        <StyledRoundButton onPress={resetSession}>
           <Feather
             name="rotate-ccw"
             size={24}
