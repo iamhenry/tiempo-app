@@ -32,7 +32,6 @@ export default function Home({ navigation }) {
       >
         <Feather name="plus" size={48} color={`${Tokens.color.blueMoon200}`} />
       </StyledRoundButton>
-      {/* TODO - CREATE EMPTY STATE COMPONENT */}
     </HomeContainer>
   );
 }

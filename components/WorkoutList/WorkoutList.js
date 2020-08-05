@@ -7,7 +7,7 @@ import { H2 } from "../Global/Primitives";
 import { WorkoutCell } from "../WorkoutCell/WorkoutCell";
 import { WorkoutContext } from "../../Context/WorkoutContext";
 import { WorkoutListEmptyState } from "./WorkoutListEmptyState";
-import { deleteItem } from "../../libs/store-helper";
+import { deleteStoreItem } from "../../libs/store-helper";
 
 const StyledWorkoutList = styled.View`
   padding-left: 20px;
@@ -47,7 +47,7 @@ export function WorkoutList() {
 
     // update the Context with the newly modified cloned data
     setWorkoutSettings(cloneData);
-    deleteItem(key);
+    deleteStoreItem(key);
 
     // removeAsyncStorage();
   };

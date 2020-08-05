@@ -73,7 +73,9 @@ export const WorkoutCell = ({ item, onSwipeRight }) => {
       <StyledWorkoutCell onPress={navHandler} key={item.key}>
         <WorkoutInfo>
           <WorkoutTitle numberOfLines={1}>{item.name}</WorkoutTitle>
-          <WorkoutMetadata numberOfLines={1}>{item.metadata}</WorkoutMetadata>
+          <WorkoutMetadata numberOfLines={1}>
+            Exercise: {item.exercise}, Rest: {item.rest}, Repeat: {item.repeat}x
+          </WorkoutMetadata>
         </WorkoutInfo>
         <WorkoutDuration numberOfLines={1}>
           {format(calculateDuration(item))}
