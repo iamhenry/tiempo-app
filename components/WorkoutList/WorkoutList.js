@@ -17,6 +17,9 @@ const StyledWorkoutList = styled.View`
   background-color: ${Tokens.color.blueMoon200};
   border-top-right-radius: ${Tokens.borderRadius.default};
   border-top-left-radius: ${Tokens.borderRadius.default};
+  display: flex;
+  /* flex-direction: column; */
+  flex-grow: 1;
 `;
 
 const SectionTitle = styled(H2)`

@@ -136,6 +136,15 @@ export const TimerDetails = ({ navigation, route }) => {
     }
   };
 
+  const handleStartSession = () => {
+    // reduce current duration by 1 second
+    // setInterval(() => {
+    //   setExcerciseInSeconds(formattedDuration - 1);
+    //   console.log(excerciseInSeconds);
+    // }, 1000);
+    console.log("start");
+  };
+
   return (
     <TimerDetailsContainer>
       <ButtonBar>
@@ -166,6 +175,7 @@ export const TimerDetails = ({ navigation, route }) => {
         tall
         wide
         onPress={() => {
+          handleStartSession();
           handleSave();
           navigation.navigate("TimerSession", {
             duration: caluculatedDuration,
@@ -173,7 +183,6 @@ export const TimerDetails = ({ navigation, route }) => {
           });
         }}
         // TODO - CREATE BUTTON MORPHING SVG ANIMATION
-        // TODO - CREATE FUNCTION TO START TIMER
       >
         <Entypo
           name="controller-play"

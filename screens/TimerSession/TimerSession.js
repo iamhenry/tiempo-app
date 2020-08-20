@@ -33,15 +33,19 @@ export const TimerSession = ({ route }) => {
   const navigation = useNavigation();
   const { duration, name } = route.params;
 
-  const pauseSession = () => {
+  const handlePauseSession = () => {
+    // will pause session at the current time
     console.log("paused");
   };
 
-  const resumeSession = () => {
+  const handleResumeSession = () => {
+    // will resume session at the current duration
+    // decrement time by one second until time reaches 0
     console.log("resume");
   };
 
-  const resetSession = () => {
+  const handleResetSession = () => {
+    // will reset session back to initial duration
     console.log("reset");
   };
 
@@ -55,14 +59,14 @@ export const TimerSession = ({ route }) => {
         <StyledRoundButton onPress={() => navigation.goBack()}>
           <Feather name="x" size={24} color={`${Tokens.color.blueMoon200}`} />
         </StyledRoundButton>
-        <StyledRoundButton tall wide primary onPress={pauseSession}>
+        <StyledRoundButton tall wide primary onPress={handlePauseSession}>
           <Feather
             name="pause"
             size={48}
             color={`${Tokens.color.snowWhite100}`}
           />
         </StyledRoundButton>
-        <StyledRoundButton onPress={resetSession}>
+        <StyledRoundButton onPress={handleResumeSession}>
           <Feather
             name="rotate-ccw"
             size={24}

@@ -11,7 +11,8 @@ import { Feather } from "@expo/vector-icons";
 const HomeContainer = styled.ScrollView`
   background-color: ${Tokens.color.summerTime200};
   padding-top: ${Tokens.spacing.xxLarge};
-  display: flex;
+  /* display: flex; */
+  /* flex-direction: row; */
   flex: 1;
 `;
 
